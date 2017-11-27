@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
+import { AbsenceRequestComponent } from './absences/absence-request/absence-request.component'
+import {AbsenceService} from './service/absence-service.service'
+import {HttpClientModule} from '@angular/common/http';
 
 /*const appRoutes: Routes = [
   { path: 'classique', component: ClassiqueComponent }, // /page1 affiche le composant A
@@ -11,12 +14,15 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AbsenceRequestComponent
   ],
   imports: [
-    BrowserModule
+  BrowserModule,
+  NgbModule.forRoot(),
+  HttpClientModule
   ],
-  providers: [],
+  providers: [AbsenceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
