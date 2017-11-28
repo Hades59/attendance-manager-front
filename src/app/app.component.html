@@ -1,14 +1,6 @@
-
+<app-nav-manager></app-nav-manager>
 <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="nav-link text-rigth">Logo</a>
-    <a routerLink="/acceuil" RouterLinkActive="active-link" class="nav-link text-left">Acceuil</a>
-    <a routerLink="/gestionAbs" RouterLinkActive="active-link" class="nav-link text-center">Gestion des absences</a>
-    <a routerLink="/planningAbs" RouterLinkActive="active-link" class="nav-link text-rigth">Planning des absences</a>
-    <a routerLink="/validDmdes" RouterLinkActive="active-link" class="nav-link text-rigth">Validation demandes</a>
-    <a routerLink="/vuesSynth" RouterLinkActive="active-link" class="nav-link text-rigth">Vues synthétques</a>
-    <a routerLink="/joursFeries" RouterLinkActive="active-link" class="nav-link text-rigth">Jours Fériés</a>
-  </nav><br>
+  <router-outlet></router-outlet>
 </div>
 <app-absence-request></app-absence-request>
 
