@@ -1,7 +1,8 @@
-h3{
+table {
     text-align: center;
 }
 
-table{
-    text-align: center;
+.jumbotron {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

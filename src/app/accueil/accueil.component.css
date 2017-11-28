@@ -1,7 +1,10 @@
-img{
+img {
     text-align: center;
+    max-width: 400px;
+    max-height: 400px;
 }
 
-#content {
-  margin-top: 10px
+.jumbotron {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
