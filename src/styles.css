@@ -4,3 +4,11 @@
     background-color: lightgray;
     color:black;
 }
+
+table {
+    text-align: center;
+}
+
+.alert {
+  margin-top: 1%;
+}
