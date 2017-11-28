@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+
 
 import { RouterModule, Routes } from '@angular/router';
 import { NavManagerComponent } from './nav-manager/nav-manager.component';
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    AbsenceRequestComponent,
     NavManagerComponent,
     ValidationDemandesComponent,
     AccueilComponent,
@@ -30,6 +32,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    HttpClientModule,
+    BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
