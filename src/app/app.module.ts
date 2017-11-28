@@ -16,21 +16,22 @@ import { AccueilComponent } from './accueil/accueil.component';
 const appRoutes: Routes = [
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
   { path: 'accueil', component: AccueilComponent },
+  { path: 'gestionAbs', component: AbsenceRequestComponent },
   { path: '**', redirectTo: 'acceuil' } // redirige vers la route page1 par défaut
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    AbsenceRequestComponent
+    AbsenceRequestComponent,
+    NavManagerComponent,
+    ValidationDemandesComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     HttpClientModule,
-    NavManagerComponent,
-    ValidationDemandesComponent,
-    AccueilComponent,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
