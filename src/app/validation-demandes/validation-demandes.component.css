@@ -1,8 +1,4 @@
-table {
-    text-align: center;
-}
-
 .jumbotron {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 1rem;
+  margin-top:1%;
 }
