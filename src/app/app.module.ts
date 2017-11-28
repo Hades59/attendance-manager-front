@@ -8,17 +8,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { NavManagerComponent } from './nav-manager/nav-manager.component';
 import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 const appRoutes: Routes = [
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
-  { path: '**', redirectTo: 'Acceuil'} // redirige vers la route page1 par défaut
+  { path: 'accueil', component: AccueilComponent },
+  { path: '**', redirectTo: 'acceuil'} // redirige vers la route page1 par défaut
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     NavManagerComponent,
-    ValidationDemandesComponent
+    ValidationDemandesComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
