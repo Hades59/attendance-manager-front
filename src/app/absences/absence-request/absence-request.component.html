@@ -26,10 +26,10 @@
 		<textarea type="date" class="form-control" id="startDate"	name="startDate" #motif></textarea>
 	</div>
 
-	<div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
-
 	<input type="button" class="btn btn-danger" value="Annuler" (click) ="cancel()" />
 
 	<input type="submit" class="btn btn-success" value="Valider" (click) ="validate(startDate,endDate,typeConge,motif,alert)" />
+
+	<div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
 
 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
-import {AbsenceService} from '../../service/absence-service.service'
-import {Absence} from '../../domain/absence'
+import {AbsenceService} from '../../domain/service/absence-service.service'
+import {Absence} from '../../domain/entite/absence'
 
 
 @Component({
@@ -22,7 +22,7 @@ export class AbsenceRequestComponent implements OnInit {
     var mStartDate = moment(startDate.value).format("DD-MM-YYYY");
     var mEndDate =  moment(endDate.value).format("DD-MM-YYYY");
     // TODO : Les dates doivent etre fournis
-  
+
     //TODO: une demande d'absence débute au plus tôt à partir de J+1
     var now = moment().add(1,'day').format("DD-MM-YYYY");
 
@@ -45,7 +45,7 @@ export class AbsenceRequestComponent implements OnInit {
       var matricule = localStorage.getItem('matricule');// le matricule est normalement stocké dans le locale storage après cnx
       matricule = "MAT01" //#####################################################################################################
       this.absenceService.askAbsence(matricule,absence)
-      
+
   }
 
 
@@ -53,14 +53,14 @@ export class AbsenceRequestComponent implements OnInit {
 
   }
 
- 
+
   cancel(){// TODO: Retour visualisation des demandes
 
   }
 
   private alertShow(alert,msg){
     alert.style.visibility = 'visible'
-    alert.innerHTML = msg  
+    alert.innerHTML = msg
     setTimeout(function(){alert.style.visibility = 'hidden'},8000);
   }
 }
