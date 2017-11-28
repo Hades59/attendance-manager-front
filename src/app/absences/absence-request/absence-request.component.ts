@@ -21,9 +21,7 @@ export class AbsenceRequestComponent implements OnInit {
     console.log("!"+startDate.value+"!");
     var mStartDate = moment(startDate.value).format("DD-MM-YYYY");
     var mEndDate =  moment(endDate.value).format("DD-MM-YYYY");
-    // TODO : Les dates doivent etre fournis
 
-    //TODO: une demande d'absence débute au plus tôt à partir de J+1
     var now = moment().add(1,'day').format("DD-MM-YYYY");
 
     if(startDate.value=="" || endDate.value==""){
@@ -32,25 +30,18 @@ export class AbsenceRequestComponent implements OnInit {
     else if (now > mStartDate) {
     this.alertShow(alert,"La date de début ne peut pas être inférieur à la date du demain")
     }
-    //TODO: la date de fin est supérieure ou égale à la date de début
     else if (mEndDate < mStartDate) {
-    this.alertShow(alert,"La date de fin doit être supérieure ou égale à la date de début")
+      this.alertShow(alert,"La date de fin doit être supérieure ou égale à la date de début")
     }
-    // TODO: le motif n'est obligatoire que si le type de demande est congés sans solde
-    else if(typeConge.value == "Congé sans solde" && motif.value==""){
-    this.alertShow(alert,"Le motif est obligatoire")
+    else if (typeConge.value == "Congé sans solde" && motif.value=="") {
+      this.alertShow(alert,"Le motif est obligatoire")
     }
-    else{// TODO : Send to server with state 'INITIALE'
+    else {
       var absence = new Absence(startDate.value,endDate.value,typeConge.value,motif.value)
-      var matricule = localStorage.getItem('matricule');// le matricule est normalement stocké dans le locale storage après cnx
-      matricule = "MAT01" //#####################################################################################################
+      var matricule = localStorage.getItem('matricule');
+      matricule = "MAT01"
       this.absenceService.askAbsence(matricule,absence)
-
-  }
-
-
-//TODO !! il est interdit de faire une demande qui chevauche une demande existante, sauf si cette dernière est rejetée.
-
+    }
   }
 
 
