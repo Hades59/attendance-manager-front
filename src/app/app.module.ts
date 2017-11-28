@@ -19,7 +19,9 @@ import { NavManagerComponent } from './nav-manager/nav-manager.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
