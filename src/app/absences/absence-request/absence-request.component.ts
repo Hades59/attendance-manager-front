@@ -18,13 +18,19 @@ export class AbsenceRequestComponent implements OnInit {
   }
 
   validate(startDate,endDate,typeConge,motif,alert) {
+    console.log("!"+startDate.value+"!");
     var mStartDate = moment(startDate.value).format("DD-MM-YYYY");
     var mEndDate =  moment(endDate.value).format("DD-MM-YYYY");
-
+    // TODO : Les dates doivent etre fournis
+  
     //TODO: une demande d'absence débute au plus tôt à partir de J+1
     var now = moment().add(1,'day').format("DD-MM-YYYY");
-    if (now > mStartDate) {
-    this.alertShow(alert,"La date de début ne peut pas être inférieur à la date du jour+1")
+
+    if(startDate.value=="" || endDate.value==""){
+      this.alertShow(alert,"Veuillez fournir les dates")
+    }
+    else if (now > mStartDate) {
+    this.alertShow(alert,"La date de début ne peut pas être inférieur à la date du demain")
     }
     //TODO: la date de fin est supérieure ou égale à la date de début
     else if (mEndDate < mStartDate) {
@@ -55,6 +61,6 @@ export class AbsenceRequestComponent implements OnInit {
   private alertShow(alert,msg){
     alert.style.visibility = 'visible'
     alert.innerHTML = msg  
-    setTimeout(function(){alert.style.visibility = 'hidden'},5000);
+    setTimeout(function(){alert.style.visibility = 'hidden'},8000);
   }
 }

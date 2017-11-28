@@ -11,11 +11,16 @@ export class AbsenceService {
   constructor(private http: HttpClient) { }
 
   askAbsence(matricule:string, absence:Absence){
-    // TODO sauvegarder le nouveau collègue
-    console.log(absence);
+    // TODO sauvegarder le nouvelle demande 
     
-   this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,absence,httpOptions).subscribe()
-   console.log(`${url_server}/users/${matricule}/absences`)
+    let data = {
+              "beginDate" :absence.beginDate+"T00:00:00",
+              "endDate":absence.endDate+"T00:00:00",
+              "motif":absence.motif,
+              "type":absence.type       
+              }
+  console.log(data)
+   this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe()
 
   }
 }
