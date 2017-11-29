@@ -1,0 +1,39 @@
+
+<div class="jumbotron text-center">
+  <h1>Validation des demandes</h1>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Date de début</th>
+      <th scope="col">Date de fin</th>
+      <th scope="col">Type</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let abs of absences">
+        <td class="">
+            <h6>{{abs._dateDeb}}</h6>
+        </td>
+        <td class="">
+            <h6>{{abs._dateFin}}</h6>
+        </td>
+        <td class="">
+            <h6>{{abs._type}}</h6>
+        </td>
+        <td class="">
+            <h6>{{abs._nom}}</h6>
+        </td>
+        <td class="">
+            <h6>{{abs._dateDeb}}</h6>
+        </td>
+        <td>
+            <button class="btn btn-outline-success" (click)="valid(abs)">v</button>
+            <button class="btn btn-outline-danger" (click)="reject(abs)">x</button>
+          </td>
+    </tr>
+  </tbody>
+</table>

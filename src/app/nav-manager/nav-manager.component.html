@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">LOGO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-manager" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,5 +13,35 @@
       <a routerLink="/vuesSynth" RouterLinkActive="active" class="nav-item nav-link">Vues synthétiques</a>
       <a routerLink="/joursFeries" RouterLinkActive="active" class="nav-item nav-link">Jours fériés</a>
     </div>
+=======
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">
+      <img src="/assets/images/icon1.png" width="50" height="50" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/accueil" RouterLinkActive="active" class="nav-link">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/gestionAbs" RouterLinkActive="active" class="nav-link">Gestion des absences</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/planningAbs" RouterLinkActive="active" class="nav-link">Planning des absences</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/validDmdes" RouterLinkActive="active" class="nav-link">Validation demandes</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/vuesSynth" RouterLinkActive="active" class="nav-link">Vues synthétiques</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/joursFeries" RouterLinkActive="active" class="nav-link">Jours fériés</a>
+        </li>
+      </ul>
+>>>>>>> a58557bdfa8805fdd3fd589ae9c01441361b5286
   </div>
 </nav>
