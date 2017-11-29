@@ -39,7 +39,7 @@ const colors: any = {
 })
 export class PlanningAbsComponent {
 
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  //@ViewChild('modalContent') modalContent: TemplateRef<any>; //permet de voir constit code
   
   view: string = 'month';
   
@@ -56,51 +56,32 @@ export class PlanningAbsComponent {
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Edited', event);
       }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      }
     }
   ];
 
   refresh: Subject<any> = new Subject();
-
+/*
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
-      title: 'A 3 day event',
+      title: 'Congé payé',
       color: colors.red,
       actions: this.actions
     },
     {
       start: startOfDay(new Date()),
-      title: 'An event with no end date',
+      title: 'RTT',
       color: colors.yellow,
       actions: this.actions
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
+      title: 'Congé sans sold',
       color: colors.blue
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
     }
-  ];
+  ];*/
 
   activeDayIsOpen: boolean = true;
 

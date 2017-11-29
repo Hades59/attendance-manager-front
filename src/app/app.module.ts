@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     CalendarModule.forRoot()
   ],
-  providers: [AbsenceService],
+  providers: [{provide: AbsenceService, useValue: 'fr'}],
   bootstrap: [AppComponent],
   exports: [PlanningAbsComponent]
 })

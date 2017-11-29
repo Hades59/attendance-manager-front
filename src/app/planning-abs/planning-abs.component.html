@@ -1,7 +1,7 @@
 <div class="jumbotron text-center">
   <h1>Planning des absences</h1>
 </div>
-
+<!--
 <ng-template #modalContent let-close="close">
   <div class="modal-header">
     <h5 class="modal-title">Event action occurred</h5>
@@ -19,10 +19,7 @@
       <pre>{{ modalData?.event | json }}</pre>
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
-  </div>
-</ng-template>
+</ng-template> -->
 <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">
@@ -32,13 +29,13 @@
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false">
-        Previous
+        Précédent
       </div>
       <div
         class="btn btn-outline-secondary"
         mwlCalendarToday
         [(viewDate)]="viewDate">
-        Today
+        Aujourd'hui
       </div>
       <div
         class="btn btn-primary"
@@ -46,48 +43,49 @@
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false">
-        Next
+        Suivant
       </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
-  </div>
-  <div class="col-md-4">
+  </div>  
+  <div class="offset-md-4 col-md-4">
     <div class="btn-group">
       <div
         class="btn btn-primary"
         (click)="view = 'month'"
         [class.active]="view === 'month'">
-        Month
+        Mois
       </div>
       <div
         class="btn btn-primary"
         (click)="view = 'week'"
         [class.active]="view === 'week'">
-        Week
+        Semaine
       </div>
     </div>
   </div>
+  <div class="row offset-md-4 col-md-4">
+    <h3>{{ viewDate | calendarDate:(view+'ViewTitle'):'fr' }}</h3>
+  </div>
 </div>
-<br>
 <div [ngSwitch]="view">
   <mwl-calendar-month-view
     *ngSwitchCase="'month'"
+    locale="fr"
     [viewDate]="viewDate"
     [events]="events"
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
-    (eventTimesChanged)="eventTimesChanged($event)">
+    (eventTimesChanged)="eventTimesChanged($event)"
+    weekStartsOn="1">
   </mwl-calendar-month-view>
   <mwl-calendar-week-view
     *ngSwitchCase="'week'"
+    locale="fr"
     [viewDate]="viewDate"
     [events]="events"
     [refresh]="refresh"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
-    (eventTimesChanged)="eventTimesChanged($event)">
+    (eventTimesChanged)="eventTimesChanged($event)"
+    weekStartsOn="1">
   </mwl-calendar-week-view>
 </div>
