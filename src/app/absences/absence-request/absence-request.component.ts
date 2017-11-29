@@ -33,7 +33,7 @@ export class AbsenceRequestComponent implements OnInit {
     else if (mEndDate < mStartDate) {
       this.alertShow(alert,"La date de fin doit être supérieure ou égale à la date de début")
     }
-    else if (typeConge.value == "Congé sans solde" && motif.value=="") {
+    else if (typeConge.value == "CONGE_SANS_SOLDE" && motif.value=="") {
       this.alertShow(alert,"Le motif est obligatoire")
     }
     else {
