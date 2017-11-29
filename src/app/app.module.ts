@@ -32,7 +32,8 @@ const appRoutes: Routes = [
     ValidationDemandesComponent,
     AccueilComponent,
     DatePipe,
-    AbsenceRequestComponent
+    AbsenceRequestComponent,
+    AbsenceUpdateComponent
   ],
 
   imports: [
