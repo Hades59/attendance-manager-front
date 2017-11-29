@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Absence } from '../../shared/domain/absence'
+import { AbsenceService } from '../../shared/service/absence.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-absence-visu',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AbsenceVisuComponent implements OnInit {
 
-  constructor() { }
+  absences: Absence[]
+
+  constructor(private _absenceService : AbsenceService) { 
+
+  }
 
   ngOnInit() {
+    this._absenceService.listerAbsence().subscribe(data => this.absences = data)
   }
 
 }
