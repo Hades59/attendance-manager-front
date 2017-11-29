@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 
 import {AbsenceService} from '../../service/absence-service.service'
 import {Absence} from '../../domain/absence'
-
-
 @Component({
-  selector: 'app-absence-request',
-  templateUrl: './absence-request.component.html',
-  styleUrls: ['./absence-request.component.css']
+  selector: 'app-absence-update',
+  templateUrl: './absence-update.component.html',
+  styleUrls: ['./absence-update.component.css']
 })
-export class AbsenceRequestComponent implements OnInit {
+export class AbsenceUpdateComponent implements OnInit {
 
   constructor(private absenceService:AbsenceService) { }
 
+  @Input() absence:Absence;
+
   ngOnInit() {
+    console.log(" le voici le motif:" + this.absence.motif);
+    
   }
 
   validate(startDate,endDate,typeConge,motif,alert) {
@@ -40,24 +42,23 @@ export class AbsenceRequestComponent implements OnInit {
     else if(typeConge.value == "Congé sans solde" && motif.value==""){
     this.alertShow(alert,"Le motif est obligatoire")
     }
-    else{// TODO : Send to server with state 'INITIALE'
-      var absence = new Absence(startDate.value,endDate.value,typeConge.value,motif.value)
+    else{
+      this.absence.beginDate = startDate.value
+      this.absence.endDate = endDate.value
+      this.absence.type = typeConge.value
+      this.absence.motif = motif.value
       var matricule = localStorage.getItem('matricule');// le matricule est normalement stocké dans le locale storage après cnx
       matricule = "MAT01" //#####################################################################################################
 
-      this.absenceService.absenceAsk(matricule,absence)
+      // UPDATE
+      this.absenceService.absenceUpdate(matricule,this.absence)
       
   }
+}
 
-
-//TODO !! il est interdit de faire une demande qui chevauche une demande existante, sauf si cette dernière est rejetée.
-
-  }
-
- 
   cancel(){// TODO: Retour visualisation des demandes
-
-  }
+    
+      }
 
   private alertShow(alert,msg){
     alert.style.visibility = 'visible'
@@ -65,4 +66,3 @@ export class AbsenceRequestComponent implements OnInit {
     setTimeout(function(){alert.style.visibility = 'hidden'},8000);
   }
 }
- 

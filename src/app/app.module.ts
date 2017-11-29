@@ -12,6 +12,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavManagerComponent } from './nav-manager/nav-manager.component';
 import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AbsenceUpdateComponent } from './absences/absence-update/absence-update.component';
+import { TestInputAbsenceComponent } from './test-input-absence/test-input-absence.component';
 
 const appRoutes: Routes = [
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
@@ -26,7 +28,9 @@ const appRoutes: Routes = [
     AbsenceRequestComponent,
     NavManagerComponent,
     ValidationDemandesComponent,
-    AccueilComponent
+    AccueilComponent,
+    AbsenceUpdateComponent,
+    TestInputAbsenceComponent
   ],
   imports: [
     BrowserModule,
