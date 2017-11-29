@@ -1,0 +1,50 @@
+<head>
+  <script src="https://use.fontawesome.com/bc36f23fbb.js"></script>
+</head>
+<div class="jumbotron text-center">
+  <h2>Gestion des absences</h2>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Type</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let absence of absences">
+            <td>{{absence.beginDate|date}}</td>
+            <td>{{absence.endDate|date}}</td>
+            <td>{{absence.type}}</td>
+            <td>{{absence.status}}</td>
+            <td>
+              <div class="row">
+                <i class="fa fa-trash col-3 offset-2 btn bordered" aria-hidden="true"></i>
+                <i class="fa fa-pencil col-3 btn bordered" aria-hidden="true"></i>
+                <i class="fa fa-eye col-3 btn bordered" aria-hidden="true"></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3 class="text-right">Demander une absence</h3>
+    </div>
+    <div class="btn btn-primary" (click)="openAbsenceRequest(content)">+</div>
+  </div>
+</div>
+<!-- MODAL -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <app-absence-request></app-absence-request>
+</ng-template>
+  
+  
