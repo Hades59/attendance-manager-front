@@ -8,17 +8,18 @@ import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.compo
 import { NavManagerComponent } from './nav-manager/nav-manager.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from './shared/pipes/date.pipe';
-<<<<<<< HEAD
-=======
-
->>>>>>> 3176b9b868096cf6c25c33a07db307f990836360
 import { RouterModule, Routes } from '@angular/router';
 import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { AbsenceRequestComponent } from './absences/absence-request/absence-request.component'
+import { AbsenceRequestComponent } from './absences/absence-request/absence-request.component';
+import { AbsenceDeleteComponent } from './absences/absence-delete/absence-delete.component';
+import { AbsenceUpdateComponent } from './absences/absence-update/absence-update.component';
+import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-visualize.component';
 
 
-const appRoutes: Routes = [
+
+
+const appRoutes: Routes = [ 
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
   { path: 'accueil', component: AccueilComponent },
   { path: 'gestionAbs', component: AbsenceVisuComponent},
@@ -31,26 +32,21 @@ const appRoutes: Routes = [
     AppComponent,
     AbsenceVisuComponent,
     NavManagerComponent,
-<<<<<<< HEAD
     DatePipe,
     AbsenceRequestComponent,
     NavManagerComponent,
-=======
->>>>>>> 3176b9b868096cf6c25c33a07db307f990836360
     ValidationDemandesComponent,
     AccueilComponent,
     DatePipe,
-    AbsenceRequestComponent
+    AbsenceDeleteComponent,
+    AbsenceUpdateComponent,
+    AbsenceVisualizeComponent
   ],
 
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     HttpClientModule,
-<<<<<<< HEAD
-    BrowserModule,
-=======
->>>>>>> 3176b9b868096cf6c25c33a07db307f990836360
     RouterModule.forRoot(appRoutes)
   ],
   providers: [AbsenceService],

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import {AbsenceService} from '../../shared/service/absence.service';
+import {Absence} from '../../shared/domain/absence';
 
-import {AbsenceService} from '../../shared/service/absence.service'
-import {Absence} from '../../shared/domain/absence'
 
 
 @Component({
@@ -15,6 +15,7 @@ export class AbsenceRequestComponent implements OnInit {
   constructor(private absenceService:AbsenceService) { }
 
   ngOnInit() {
+
   }
 
   validate(startDate,endDate,typeConge,motif,alert) {
@@ -24,7 +25,7 @@ export class AbsenceRequestComponent implements OnInit {
 
     var now = moment().add(1,'day').format("DD-MM-YYYY");
 
-    if(startDate.value=="" || endDate.value==""){
+    if(startDate.value=="" || endDate.value==""){ 
       this.alertShow(alert,"Veuillez fournir les dates")
     }
     else if (now > mStartDate) {
@@ -40,9 +41,10 @@ export class AbsenceRequestComponent implements OnInit {
       var absence = new Absence(startDate.value,endDate.value,typeConge.value,motif.value)
       var matricule = localStorage.getItem('matricule');
       matricule = "MAT01"
-      this.absenceService.askAbsence(matricule, absence)
+      this.absenceService.askAbsence(matricule,absence)
     }
   }
+
 
   cancel(){// TODO: Retour visualisation des demandes
 

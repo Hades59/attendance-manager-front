@@ -18,6 +18,7 @@
           </tr>
         </thead>
         <tbody>
+         
           <tr *ngFor="let absence of absences">
             <td>{{absence.beginDate|date}}</td>
             <td>{{absence.endDate|date}}</td>
@@ -25,9 +26,9 @@
             <td>{{absence.status}}</td>
             <td>
               <div class="row">
-                <i class="fa fa-trash col-3 offset-2 btn bordered" aria-hidden="true"></i>
-                <i class="fa fa-pencil col-3 btn bordered" aria-hidden="true"></i>
-                <i class="fa fa-eye col-3 btn bordered" aria-hidden="true"></i>
+                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" aria-hidden="true" (click)="openAbsenceDelete(contentDelete)"></i>
+                <i id="update" class="fa fa-pencil col-3 btn bordered" aria-hidden="true" (click)="openAbsenceUpdate(content)"></i>
+                <i id="visualize" class="fa fa-eye col-3 btn bordered" aria-hidden="true" (click)="openAbsenceVisualize(content)"></i>
               </div>
             </td>
           </tr>
@@ -39,6 +40,14 @@
     <div class="col">
       <h3 class="text-right">Demander une absence</h3>
     </div>
-    <div class="btn btn-primary">+</div>
+    <div class="btn btn-primary" (click)="openAbsenceRequest(content)">+</div>
   </div>
 </div>
+<!-- MODAL -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <app-absence-request></app-absence-request> 
+</ng-template>
+
+<ng-template #contentDelete>
+    <app-absence-delete></app-absence-delete>
+</ng-template>
