@@ -1,65 +1,44 @@
 <head>
-<script src="https://use.fontawesome.com/bc36f23fbb.js"></script>
+  <script src="https://use.fontawesome.com/bc36f23fbb.js"></script>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">LOGOs</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-manager" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  <div class="collapse navbar-collapse" id="navigation-manager">
-    <div class="navbar-nav" id="navigation-manager">
-      <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-              <a routerLink="/accueil" RouterLinkActive="active" class="nav-item nav-link">Acceuil</a>
-          </li>
-      </ul>
-      <a routerLink="/gestionAbs" RouterLinkActive="active" class="nav-item nav-link" href="#">Gestion des absences</a>
-      <a routerLink="/planningAbs" RouterLinkActive="active" class="nav-item nav-link active">Planning des absences</a>
-      <a routerLink="/joursFeries" RouterLinkActive="active" class="nav-item nav-link">Jours fériés</a>
+<div class="jumbotron text-center">
+  <h2>Gestion des absences</h2>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Type</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let absence of absences">
+            <td>{{absence.beginDate|date}}</td>
+            <td>{{absence.endDate|date}}</td>
+            <td>{{absence.type}}</td>
+            <td>{{absence.status}}</td>
+            <td>
+              <div class="row">
+                <i class="fa fa-trash col-3 offset-2 btn bordered" aria-hidden="true"></i>
+                <i class="fa fa-pencil col-3 btn bordered" aria-hidden="true"></i>
+                <i class="fa fa-eye col-3 btn bordered" aria-hidden="true"></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-</nav>
-
-<div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-6">
-          <h2>Gestion des absences</h2>
-        </div>
-      </div><!-- row -->
-      <div class="row">
-        <div class="col-md-6 col-md-offset-4">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Date de début</th>
-                    <th>Date de fin</th>
-                    <th>Type</th>
-                    <th>Statut</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let absence of absences">
-                    <td>{{absence.beginDate|date}}</td>
-                    <td>{{absence.endDate|date}}</td>
-                    <td>{{absence.type}}</td>
-                    <td>{{absence.status}}</td>
-                    <td><i class="fa fa-trash" aria-hidden="true"></i><i class="fa fa-pencil" aria-hidden="true"></i><i class="fa fa-eye" aria-hidden="true"></i></td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-      </div><!-- row -->
-      <div class="row">
-        <div class="col-md-4 col-md-offset-8">
-          <h3>Demander une absence</h3>
-        </div><!-- md 4 -->
-        <div class="col-md-1 col-md-offset-9">
-          <div class="btn btn-primary">+</div>
-        </div><!--md 1 -->
-      </div><!-- row -->
-    </div><!-- md 12 -->
-  </div><!-- row -->
-</div><!-- container -->
+    <div class="col">
+      <h3 class="text-right">Demander une absence</h3>
+    </div>
+    <div class="btn btn-primary">+</div>
+  </div>
+</div>

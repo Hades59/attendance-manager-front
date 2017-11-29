@@ -14,15 +14,12 @@ import { Subject } from 'rxjs/Subject';
 export class AppComponent implements OnInit {
   title = 'app';
 
- 
-
   constructor(private _absenceService: AbsenceService) {
-    
-      }
+  }
 
-    ngOnInit(){
-      
-    }
+  ngOnInit() {
+  }
+
 }
 
 

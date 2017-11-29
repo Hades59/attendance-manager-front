@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
-import {AbsenceService} from '../../domain/service/absence-service.service'
-import {Absence} from '../../domain/entite/absence'
+import {AbsenceService} from '../../shared/service/absence.service'
+import {Absence} from '../../shared/domain/absence'
 
 
 @Component({
@@ -40,10 +40,9 @@ export class AbsenceRequestComponent implements OnInit {
       var absence = new Absence(startDate.value,endDate.value,typeConge.value,motif.value)
       var matricule = localStorage.getItem('matricule');
       matricule = "MAT01"
-      this.absenceService.askAbsence(matricule,absence)
+      this.absenceService.askAbsence(matricule, absence)
     }
   }
-
 
   cancel(){// TODO: Retour visualisation des demandes
 

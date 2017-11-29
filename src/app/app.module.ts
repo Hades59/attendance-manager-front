@@ -8,6 +8,10 @@ import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.compo
 import { NavManagerComponent } from './nav-manager/nav-manager.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from './shared/pipes/date.pipe';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3176b9b868096cf6c25c33a07db307f990836360
 import { RouterModule, Routes } from '@angular/router';
 import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -17,7 +21,8 @@ import { AbsenceRequestComponent } from './absences/absence-request/absence-requ
 const appRoutes: Routes = [
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
   { path: 'accueil', component: AccueilComponent },
-  { path: 'gestionAbs', component: AbsenceRequestComponent},
+  { path: 'gestionAbs', component: AbsenceVisuComponent},
+  { path: 'request', component: AbsenceRequestComponent},
   { path: '**', redirectTo: 'acceuil'} // redirige vers la route page1 par défaut
 ];
 
@@ -26,11 +31,15 @@ const appRoutes: Routes = [
     AppComponent,
     AbsenceVisuComponent,
     NavManagerComponent,
+<<<<<<< HEAD
     DatePipe,
     AbsenceRequestComponent,
     NavManagerComponent,
+=======
+>>>>>>> 3176b9b868096cf6c25c33a07db307f990836360
     ValidationDemandesComponent,
     AccueilComponent,
+    DatePipe,
     AbsenceRequestComponent
   ],
 
@@ -38,7 +47,10 @@ const appRoutes: Routes = [
     BrowserModule,
     NgbModule.forRoot(),
     HttpClientModule,
+<<<<<<< HEAD
     BrowserModule,
+=======
+>>>>>>> 3176b9b868096cf6c25c33a07db307f990836360
     RouterModule.forRoot(appRoutes)
   ],
   providers: [AbsenceService],
