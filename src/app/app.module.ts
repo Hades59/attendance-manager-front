@@ -8,15 +8,19 @@ import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.compo
 import { NavManagerComponent } from './nav-manager/nav-manager.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from './shared/pipes/date.pipe';
-
 import { RouterModule, Routes } from '@angular/router';
 import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AbsenceRequestComponent } from './absences/absence-request/absence-request.component';
+import { AbsenceDeleteComponent } from './absences/absence-delete/absence-delete.component';
 import { AbsenceUpdateComponent } from './absences/absence-update/absence-update.component';
-import { AbsenceRequestComponent } from './absences/absence-request/absence-request.component'
+import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-visualize.component';
 
 
-const appRoutes: Routes = [
+
+
+
+const appRoutes: Routes = [ 
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
   { path: 'accueil', component: AccueilComponent },
   { path: 'gestionAbs', component: AbsenceVisuComponent},
@@ -29,9 +33,15 @@ const appRoutes: Routes = [
     AppComponent,
     AbsenceVisuComponent,
     NavManagerComponent,
+    DatePipe,
+    AbsenceRequestComponent,
+    NavManagerComponent,
     ValidationDemandesComponent,
     AccueilComponent,
     DatePipe,
+    AbsenceDeleteComponent,
+    AbsenceUpdateComponent,
+    AbsenceVisualizeComponent,
     AbsenceRequestComponent,
     AbsenceUpdateComponent
   ],

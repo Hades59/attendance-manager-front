@@ -3,6 +3,8 @@ import { Absence } from '../../shared/domain/absence'
 import { AbsenceService } from '../../shared/service/absence.service';
 import { DatePipe } from '@angular/common';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
+
 @Component({
   selector: 'app-absence-visu',
   templateUrl: './absence-visu.component.html',
@@ -11,7 +13,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class AbsenceVisuComponent implements OnInit {
 
   absences: Absence[]
-  currentAbsence: Absence
+  currentAbsence : Absence
   constructor(private _absenceService : AbsenceService,private modalService: NgbModal) { 
 
   }
@@ -24,19 +26,6 @@ export class AbsenceVisuComponent implements OnInit {
     console.log(absence)
     this.currentAbsence = absence;
     const contentComponentInstance = this.modalService.open(content).componentInstance;
-    //contentComponentInstance.absnece = absence;
-/*
-    let test = "{ resolve: {'foo': 'Foo value' } }"
-    this.modalService.open(content, test );*/
-   /* this.modalService.open(content,{
-      resolve: {
-          'foo': 'Foo value',
-          '_bar': 5
-      }  ).result.then((result) => {
-      console.log(`Closed with: ${result}`)
-    }, (reason) => {
-      console.log(`Dismissed : ${reason}`);
-    });
-    }*/
+
   }
 }

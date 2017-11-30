@@ -10,7 +10,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
 const url_server = "http://localhost:8080"
-
 @Injectable()
 export class AbsenceService {
 
@@ -50,15 +49,15 @@ export class AbsenceService {
 
   absenceAsk(matricule:string, absence:Absence){
     // TODO sauvegarder le nouvelle demande 
-    
-    let data = {
-              "beginDate" :absence.beginDate+"T00:00:00",
-              "endDate":absence.endDate+"T00:00:00",
-              "motif":absence.motif,
-              "type":absence.type       
-              }
-   this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe()
 
+    let data = {
+      "beginDate" :absence.beginDate+"T00:00:00",
+      "endDate":absence.endDate+"T00:00:00",
+      "motif":absence.motif,
+      "type":absence.type    
+    }
+    this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe()
+    
   }
 
   absenceUpdate(matricule:string, absence:Absence){
@@ -73,5 +72,9 @@ export class AbsenceService {
       
       this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe() 
   }
+
+  /*deleteAbsence(absence: Absence){
+    this.absenceService.deleteAbsence(absence)
+  }*/
   
 }

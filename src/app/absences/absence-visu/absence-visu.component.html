@@ -18,6 +18,7 @@
           </tr>
         </thead>
         <tbody>
+         
           <tr *ngFor="let absence of absences">
             <td>{{absence.beginDate|date : 'dd/MM/yyyy'}}</td>
             <td>{{absence.endDate|date: 'dd/MM/yyyy'}}</td>
@@ -25,9 +26,9 @@
             <td>{{absence.status}}</td>
             <td>
               <div class="row">
-                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContent(askAbsence,absence)"></i>
-                <i class="fa fa-pencil col-3 btn bordered" aria-hidden="true" (click)="openContent(updateAbsence,absence)"></i>
-                <i class="fa fa-eye col-3 btn bordered" aria-hidden="true"></i>
+                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContent(deleteAbsence,absence)"></i>
+                <i id="update" class="fa fa-pencil col-3 btn bordered" (click)="openContent(updateAbsence,absence)"></i>
+                <i id="visualize" class="fa fa-eye col-3 btn bordered" (click)="openContent(visualizeAbsence,absence)"></i>
               </div>
             </td>
           </tr>
@@ -52,5 +53,14 @@
     <app-absence-update  [absence]="currentAbsence"> </app-absence-update>
   </ng-template>
 
+  <!-- MODAL suppression d'absnece -->
+  <ng-template #deleteAbsence>
+      <app-absence-delete></app-absence-delete>
+  </ng-template>
+
+  <!-- MODAL visualisation d'absnece -->
+  <ng-template #visualizeAbsence>
+      <app-absence-visualize></app-absence-visualize>
+  </ng-template>
   
   
