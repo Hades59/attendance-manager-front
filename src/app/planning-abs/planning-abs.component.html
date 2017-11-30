@@ -72,7 +72,7 @@
     *ngSwitchCase="'month'"
     locale="fr"
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="events | async"
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
@@ -83,7 +83,7 @@
     *ngSwitchCase="'week'"
     locale="fr"
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="events | async"
     [refresh]="refresh"
     (eventTimesChanged)="eventTimesChanged($event)"
     weekStartsOn="1">

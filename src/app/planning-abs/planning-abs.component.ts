@@ -10,7 +10,7 @@ import { startOfDay,
          isSameDay,
          isSameMonth,
          addHours } from 'date-fns';
-import { Subject } from 'rxjs/Subject';
+import { Subject, Observable} from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent,
          CalendarEventAction,
@@ -29,6 +29,10 @@ const colors: any = {
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA'
+  },
+  purple: {
+    primary: '##ad2095',
+    secondary: '#ff2bda'
   }
  };
 
@@ -50,7 +54,7 @@ export class PlanningAbsComponent {
     action: string;
     event: CalendarEvent;
   };
-
+/*
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
@@ -58,35 +62,52 @@ export class PlanningAbsComponent {
         this.handleEvent('Edited', event);
       }
     }
-  ];
-
-  refresh: Subject<any> = new Subject();
-
-  /*events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'Congé payé',  //absence.nom + absence.type
-      color: colors.red,
-      actions: this.actions
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'RTT', //absence.nom + absence.type
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'Congé sans sold', //absence.nom + absence.type
-      color: colors.blue
-    }
   ];*/
+
+  refresh: Subject<CalendarEvent[]> = new Subject();
+  events: Observable<CalendarEvent[]> /* [{
+    start: subDays(startOfDay(new Date()), 1),
+    end: addDays(new Date(), 1),
+    title: 'Congé payé',  //absence.nom + absence.type
+    color: colors.red
+  }];*/
+
+  events2 : CalendarEvent[] = []
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, public absenceService: AbsenceService) { }
+  constructor(private modal: NgbModal, public absenceService: AbsenceService) { 
+    this.events = this.refresh.asObservable()
+    this.absenceService.listerAbsenceParStatus("VALIDEE")
+                       .subscribe(absences => absences.forEach(abs => {
+
+      let color : any = colors.purple;
+      if (abs.type=='RTT'){
+        color=colors.yellow;
+      }
+      if (abs.type=='CONGE_PAYE'){
+        color=colors.blue;
+      } 
+      if (abs.type=='CONGE_SANS_SOLDE'){
+        color=colors.red;
+      }                   
+                        
+      let event : CalendarEvent = {
+        "start": new Date(abs.beginDate),
+        "end": new Date(abs.endDate),
+        "title": abs.type+": "+abs.id,  //absence.nom + absence.type
+        "color": color
+      }
+      
+      console.log(event)
+      this.events2.push(event);
+      this.refresh.next(this.events2)
+     // this.events.push(event);
+
+    }));
+
+
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -112,11 +133,11 @@ export class PlanningAbsComponent {
     this.handleEvent('Dropped or resized', event);
     this.refresh.next();
   }*/
-
+/*
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     //this.modal.open(this.modalContent, { size: 'lg' });
-  }
+  }*/
 
  /* addEvent(): void {
     this.events.push({

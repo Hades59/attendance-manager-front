@@ -27,11 +27,11 @@ import { AbsenceService } from './shared/service/absence.service';
 const appRoutes: Routes = [ 
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
   { path: 'accueil', component: AccueilComponent },
-  { path: 'gestionAbs', component: AbsenceRequestComponent},
+  { path: 'gestionAbs', component: AbsenceVisualizeComponent},
   { path: 'planningAbs', component: PlanningAbsComponent},
   { path: 'gestionAbs', component: AbsenceVisuComponent},
   { path: 'request', component: AbsenceRequestComponent},
-  { path: '**', redirectTo: 'acceuil'} // redirige vers la route page1 par défaut
+  { path: '**', redirectTo: 'accueil'} // redirige vers la route page1 par défaut
 ];
 
 @NgModule({
