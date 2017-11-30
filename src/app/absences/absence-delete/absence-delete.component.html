@@ -3,16 +3,18 @@
       <label>Confirmez-vous la suppression de la demande suivante ?</label>
       <ul>
         <li>
-          <p>Date de début : </p>
+          <label>Date de début : {{absence.beginDate | date:'dd-MM-yyyy'}}</label>
         </li>
         <li>
-          <p>Date de fin :</p>
+          <label>Date de fin : {{absence.endDate | date:'dd-MM-yyyy'}}</label>
         </li>
         <li>
-          <p>Type de congés :</p>
+          <label>Type de congés : {{absence.type | minuscule}}</label> 
         </li>      
       </ul>
     </div>
+
+    
   
   
   

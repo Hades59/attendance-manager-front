@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 import {AbsenceService} from '../../shared/service/absence.service';
 import {Absence} from '../../shared/domain/absence';
@@ -11,6 +11,8 @@ import {Absence} from '../../shared/domain/absence';
 export class AbsenceDeleteComponent implements OnInit {
 
   constructor(private absenceService:AbsenceService) { }
+
+  @Input() absence:Absence;
 
   ngOnInit() {
 

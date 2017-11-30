@@ -17,7 +17,7 @@ export class AbsenceUpdateComponent implements OnInit {
   ngOnInit() {
     
   }
-/*
+
   validate(startDate,endDate,typeConge,motif,alert) {
     console.log("!"+startDate.value+"!");
     var mStartDate = moment(startDate.value).format("DD-MM-YYYY");
@@ -65,5 +65,5 @@ export class AbsenceUpdateComponent implements OnInit {
     setTimeout(function(){alert.style.visibility = 'hidden'},8000);
   }
 
-  */
+  
 }
