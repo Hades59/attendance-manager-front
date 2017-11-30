@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 
 import {AbsenceService} from '../../shared/service/absence.service'
-import {Absence} from '../../domain/absence'
+import {Absence} from '../../shared/domain/absence'
 @Component({
   selector: 'app-absence-update',
   templateUrl: './absence-update.component.html',
@@ -17,7 +17,7 @@ export class AbsenceUpdateComponent implements OnInit {
   ngOnInit() {
     
   }
-/*
+
   validate(startDate,endDate,typeConge,motif,alert) {
     console.log("!"+startDate.value+"!");
     var mStartDate = moment(startDate.value).format("DD-MM-YYYY");
@@ -65,5 +65,4 @@ export class AbsenceUpdateComponent implements OnInit {
     setTimeout(function(){alert.style.visibility = 'hidden'},8000);
   }
 
-  */
 }
