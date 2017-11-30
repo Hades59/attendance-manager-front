@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import { '...'Service } from '../shared/service/'...'.service';
+import { AbsenceService } from '../shared/service/absence.service';
 
 @Component({
   selector: 'app-validation-demandes',
@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValidationDemandesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public absenceService: AbsenceService) { 
+    this.absenceService.listerAbsenceParStatus("EN_ATTENTE_VALIDIDATION").subscribe() }
 
   ngOnInit() {
   }

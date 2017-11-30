@@ -47,6 +47,13 @@ export class AbsenceService {
     return this.absenceSubject.asObservable()
   }
 
+  listerAbsenceParStatus(status:string) : Observable<Absence[]> {
+    // TODO sauvegarder le nouvelle demande 
+
+    return this.http.get<Absence[]>(`${url_server}/absences?status=${status}`, httpOptions);
+    
+  }
+
   absenceAsk(matricule:string, absence:Absence){
     // TODO sauvegarder le nouvelle demande 
 
