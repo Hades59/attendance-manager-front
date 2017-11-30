@@ -23,9 +23,8 @@ export class AbsenceVisuComponent implements OnInit {
   }
 
   openContent(content, absence){
-    console.log(absence)
     this.currentAbsence = absence;
-    const contentComponentInstance = this.modalService.open(content).componentInstance;
+    this.modalService.open(content).componentInstance;
 
   }
 }
