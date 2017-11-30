@@ -60,8 +60,8 @@ export class PlanningAbsComponent {
   ];
 
   refresh: Subject<any> = new Subject();
-/*
-  events: CalendarEvent[] = [
+
+  /*events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
@@ -114,7 +114,7 @@ export class PlanningAbsComponent {
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    //this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   addEvent(): void {
