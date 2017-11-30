@@ -20,23 +20,9 @@ export class AbsenceVisuComponent implements OnInit {
     this._absenceService.listerAbsence().subscribe(data => this.absences = data)
   }
 
-  openContent(content, absence){
-    console.log(absence)
+   openContent(content, absence){
     this.currentAbsence = absence;
     const contentComponentInstance = this.modalService.open(content).componentInstance;
-    //contentComponentInstance.absnece = absence;
-/*
-    let test = "{ resolve: {'foo': 'Foo value' } }"
-    this.modalService.open(content, test );*/
-   /* this.modalService.open(content,{
-      resolve: {
-          'foo': 'Foo value',
-          '_bar': 5
-      }  ).result.then((result) => {
-      console.log(`Closed with: ${result}`)
-    }, (reason) => {
-      console.log(`Dismissed : ${reason}`);
-    });
-    }*/
+
   }
 }

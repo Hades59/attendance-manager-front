@@ -55,8 +55,11 @@ export class AbsenceService {
               "beginDate" :absence.beginDate+"T00:00:00",
               "endDate":absence.endDate+"T00:00:00",
               "motif":absence.motif,
-              "type":absence.type       
+              "status":absence.status,
+              "type":  absence.type    
               }
+              console.log(data);
+              
    this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe()
 
   }

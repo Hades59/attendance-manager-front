@@ -40,10 +40,11 @@ export class AbsenceRequestComponent implements OnInit {
       this.alertShow(alert,"Le motif est obligatoire")
     }
     else {
-      var absence = new Absence(startDate.value,endDate.value,typeConge.value,motif.value)
+      var absenceTmp = new Absence(startDate.value,endDate.value,typeConge.value,motif.value)
+      absenceTmp.status = "INITIALE"
       var matricule = localStorage.getItem('matricule');
       matricule = "MAT01"
-      this.absenceService.absenceAsk(matricule, absence)
+      this.absenceService.absenceAsk(matricule, absenceTmp)
     }
   }
 

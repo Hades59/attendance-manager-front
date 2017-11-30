@@ -17,9 +17,8 @@ export class AbsenceUpdateComponent implements OnInit {
   ngOnInit() {
     
   }
-/*
+
   validate(startDate,endDate,typeConge,motif,alert) {
-    console.log("!"+startDate.value+"!");
     var mStartDate = moment(startDate.value).format("DD-MM-YYYY");
     var mEndDate =  moment(endDate.value).format("DD-MM-YYYY");
     // TODO : Les dates doivent etre fournis
@@ -46,6 +45,7 @@ export class AbsenceUpdateComponent implements OnInit {
       this.absence.endDate = endDate.value
       this.absence.type = typeConge.value
       this.absence.motif = motif.value
+      this.absence.status = "INITIALE"
       var matricule = localStorage.getItem('matricule');// le matricule est normalement stocké dans le locale storage après cnx
       matricule = "MAT01" //#####################################################################################################
 
@@ -65,5 +65,5 @@ export class AbsenceUpdateComponent implements OnInit {
     setTimeout(function(){alert.style.visibility = 'hidden'},8000);
   }
 
-  */
+  
 }
