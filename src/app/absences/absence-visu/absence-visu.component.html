@@ -22,8 +22,8 @@
           <tr *ngFor="let absence of absences">
             <td>{{absence.beginDate|date : 'dd/MM/yyyy'}}</td>
             <td>{{absence.endDate|date: 'dd/MM/yyyy'}}</td>
-            <td>{{absence.type}}</td>
-            <td>{{absence.status}}</td>
+            <td>{{absence.type | minuscule}}</td>
+            <td>{{absence.status | minuscule}}</td>
             <td>
               <div class="row">
                 <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContent(deleteAbsence,absence)"></i>
@@ -55,7 +55,7 @@
 
   <!-- MODAL suppression d'absnece -->
   <ng-template #deleteAbsence>
-      <app-absence-delete></app-absence-delete>
+      <app-absence-delete [absence]="currentAbsence"></app-absence-delete>
   </ng-template>
 
   <!-- MODAL visualisation d'absnece -->

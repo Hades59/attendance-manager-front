@@ -15,6 +15,7 @@ import { AbsenceRequestComponent } from './absences/absence-request/absence-requ
 import { AbsenceDeleteComponent } from './absences/absence-delete/absence-delete.component';
 import { AbsenceUpdateComponent } from './absences/absence-update/absence-update.component';
 import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-visualize.component';
+import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 
 
 
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     AbsenceUpdateComponent,
     AbsenceVisualizeComponent,
     AbsenceRequestComponent,
-    AbsenceUpdateComponent
+    AbsenceUpdateComponent,
+    TypeCongePipe
   ],
 
   imports: [

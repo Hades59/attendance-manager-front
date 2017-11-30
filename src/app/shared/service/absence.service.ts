@@ -7,7 +7,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 }
 const url_server = "http://localhost:8080"
 @Injectable()
@@ -73,8 +73,10 @@ export class AbsenceService {
       this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe() 
   }
 
-  /*deleteAbsence(absence: Absence){
-    this.absenceService.deleteAbsence(absence)
-  }*/
+  absenceDelete(matricule:string, absence:Absence){
+
+      let date = new Date()
+      this.http.delete<Absence>(`${url_server}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
+  }
   
 }
