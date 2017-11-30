@@ -19,6 +19,7 @@ import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-
 
 
 
+
 const appRoutes: Routes = [ 
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
   { path: 'accueil', component: AccueilComponent },
@@ -40,7 +41,9 @@ const appRoutes: Routes = [
     DatePipe,
     AbsenceDeleteComponent,
     AbsenceUpdateComponent,
-    AbsenceVisualizeComponent
+    AbsenceVisualizeComponent,
+    AbsenceRequestComponent,
+    AbsenceUpdateComponent
   ],
 
   imports: [

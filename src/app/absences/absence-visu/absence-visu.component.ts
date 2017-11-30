@@ -13,7 +13,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class AbsenceVisuComponent implements OnInit {
 
   absences: Absence[]
-
+  currentAbsence : Absence
   constructor(private _absenceService : AbsenceService,private modalService: NgbModal) { 
 
   }
@@ -22,20 +22,10 @@ export class AbsenceVisuComponent implements OnInit {
     this._absenceService.listerAbsence().subscribe(data => this.absences = data)
   }
 
-  openAbsenceRequest(content){
-    this.modalService.open(content).result.then((result) => {
-      console.log(`Closed with: ${result}`)
-    }, (reason) => {
-      console.log(`Dismissed`);
-    });
-  }
+  openContent(content, absence){
+    console.log(absence)
+    this.currentAbsence = absence;
+    const contentComponentInstance = this.modalService.open(content).componentInstance;
 
-  openAbsenceDelete(contentDelete){
-    this.modalService.open(contentDelete).result.then((result) => {
-      console.log(`Closed with: ${result}`)
-    }, (reason) => { 
-      console.log(`Dismissed`);
-    });
   }
-
 }

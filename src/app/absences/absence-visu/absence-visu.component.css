@@ -8,16 +8,21 @@
 }
 
 #delete:hover{
-    background-color: red
+    background-color: red;
+    cursor:pointer;
  }
 
  #update:hover{
-    background-color: #6495ED
+    background-color: #6495ED;
+    cursor:pointer;
  }
  
  #visualize:hover{
-    background-color: green
+    background-color: green;
+    cursor:pointer;
  }
+
+
 
  
  

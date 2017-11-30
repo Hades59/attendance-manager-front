@@ -13,7 +13,9 @@ export class AbsenceDeleteComponent implements OnInit {
   constructor(private absenceService:AbsenceService) { }
 
   ngOnInit() {
-    
+
   }
+
+  
 
 }
