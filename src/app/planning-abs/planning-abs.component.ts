@@ -15,6 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent,
          CalendarEventAction,
          CalendarEventTimesChangedEvent } from 'angular-calendar';
+import { AbsenceService } from '../shared/service/absence.service';
 
 const colors: any = {
   red: {
@@ -65,27 +66,27 @@ export class PlanningAbsComponent {
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
-      title: 'Congé payé',
+      title: 'Congé payé',  //absence.nom + absence.type
       color: colors.red,
       actions: this.actions
     },
     {
       start: startOfDay(new Date()),
-      title: 'RTT',
+      title: 'RTT', //absence.nom + absence.type
       color: colors.yellow,
       actions: this.actions
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
-      title: 'Congé sans sold',
+      title: 'Congé sans sold', //absence.nom + absence.type
       color: colors.blue
     }
   ];*/
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) { }
+  constructor(private modal: NgbModal, public absenceService: AbsenceService) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -101,7 +102,7 @@ export class PlanningAbsComponent {
     }
   }
 
-  eventTimesChanged({
+  /*eventTimesChanged({
     event,
     newStart,
     newEnd
@@ -110,14 +111,14 @@ export class PlanningAbsComponent {
     event.end = newEnd;
     this.handleEvent('Dropped or resized', event);
     this.refresh.next();
-  }
+  }*/
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     //this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
+ /* addEvent(): void {
     this.events.push({
       title: 'New event',
       start: startOfDay(new Date()),
@@ -130,6 +131,6 @@ export class PlanningAbsComponent {
       }
     });
     this.refresh.next();
-  }
+  }*/
 
 }

@@ -1,0 +1,28 @@
+.jumbotron {
+    padding: 1rem;
+    margin-top:1%;
+  }
+
+.bordered{
+    border: 1px solid #ccc;
+}
+
+#delete:hover{
+    background-color: red;
+    cursor:pointer;
+ }
+
+ #update:hover{
+    background-color: #6495ED;
+    cursor:pointer;
+ }
+ 
+ #visualize:hover{
+    background-color: green;
+    cursor:pointer;
+ }
+
+
+
+ 
+ 
