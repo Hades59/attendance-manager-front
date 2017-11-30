@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
+const url_server = "http://localhost:8080"
 
 @Injectable()
 export class AbsenceService {
@@ -24,7 +25,7 @@ export class AbsenceService {
   }
 
   refresh(): void {
-    this.http.get<any>(`http://localhost:8080/absences`)
+    this.http.get<any>(`${url_server}/absences`)
       .subscribe(abs => {
         abs.forEach(e => {
           let begin = new Date(e.beginDate.substring(4, 0), e.beginDate.substring(7, 5), e.beginDate.substring(10, 8))
@@ -47,17 +48,30 @@ export class AbsenceService {
     return this.absenceSubject.asObservable()
   }
 
-  askAbsence(matricule: string, absence: Absence) {
-
+  absenceAsk(matricule:string, absence:Absence){
+    // TODO sauvegarder le nouvelle demande 
+    
     let data = {
-      "beginDate": absence.beginDate + "T00:00:00",
-      "endDate": absence.endDate + "T00:00:00",
-      "motif": absence.motif,
-      "type": absence.type
-    }
+              "beginDate" :absence.beginDate+"T00:00:00",
+              "endDate":absence.endDate+"T00:00:00",
+              "motif":absence.motif,
+              "type":absence.type       
+              }
+   this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe()
 
-    console.log(data)
-    this.http.post<Absence>(`http://localhost:8080/users/${matricule}/absences`, data, httpOptions).subscribe()
+  }
+
+  absenceUpdate(matricule:string, absence:Absence){
+    let data = {
+      "id":absence.id,
+      "beginDate" :absence.beginDate+"T00:00:00",
+      "endDate":absence.endDate+"T00:00:00",
+      "motif":absence.motif,
+      "type":absence.type       
+      }
+      console.log(data);
+      
+      this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe() 
   }
   
 }

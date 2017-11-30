@@ -12,6 +12,7 @@ import { DatePipe } from './shared/pipes/date.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AbsenceUpdateComponent } from './absences/absence-update/absence-update.component';
 import { AbsenceRequestComponent } from './absences/absence-request/absence-request.component'
 
 
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     ValidationDemandesComponent,
     AccueilComponent,
     DatePipe,
-    AbsenceRequestComponent
+    AbsenceRequestComponent,
+    AbsenceUpdateComponent
   ],
 
   imports: [

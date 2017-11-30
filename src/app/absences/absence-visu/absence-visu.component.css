@@ -6,4 +6,7 @@
 .bordered{
     border: 1px solid #ccc;
 }
-  
+
+#delete:hover{
+    background-color: red
+}

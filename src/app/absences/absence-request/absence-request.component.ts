@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 
 import {AbsenceService} from '../../shared/service/absence.service'
@@ -12,9 +12,12 @@ import {Absence} from '../../shared/domain/absence'
 })
 export class AbsenceRequestComponent implements OnInit {
 
+  @Input() absence:Absence;
+
   constructor(private absenceService:AbsenceService) { }
 
   ngOnInit() {
+    console.log("HIHIHI", this.absence)
   }
 
   validate(startDate,endDate,typeConge,motif,alert) {
@@ -40,7 +43,7 @@ export class AbsenceRequestComponent implements OnInit {
       var absence = new Absence(startDate.value,endDate.value,typeConge.value,motif.value)
       var matricule = localStorage.getItem('matricule');
       matricule = "MAT01"
-      this.absenceService.askAbsence(matricule, absence)
+      this.absenceService.absenceAsk(matricule, absence)
     }
   }
 
@@ -54,3 +57,4 @@ export class AbsenceRequestComponent implements OnInit {
     setTimeout(function(){alert.style.visibility = 'hidden'},8000);
   }
 }
+ 
