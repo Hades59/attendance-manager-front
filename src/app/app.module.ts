@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Absence } from './shared/domain/absence'
 import { AppComponent } from './app.component';
 import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.component';
@@ -51,7 +51,6 @@ const appRoutes: Routes = [
     AbsenceUpdateComponent,
     AbsenceVisualizeComponent,
     AbsenceRequestComponent,
-    AbsenceUpdateComponent,
     TypeCongePipe
   ],
 
@@ -68,7 +67,7 @@ const appRoutes: Routes = [
     CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [{provide: AbsenceService, useValue: 'fr'}],
+  providers: [AbsenceService, NgbActiveModal],
   bootstrap: [AppComponent],
   exports: [PlanningAbsComponent]
 })
