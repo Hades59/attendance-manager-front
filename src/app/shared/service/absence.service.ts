@@ -31,7 +31,7 @@ export class AbsenceService {
           let end = new Date(e.endDate.substring(4, 0), e.endDate.substring(7, 5), e.endDate.substring(10, 8))
           let motif = e.motif
           let type = e.type
-          let absence = new Absence(begin, end, motif, type);
+          let absence = new Absence(begin, end, type, motif);
           absence.id = e.id
           absence.status = e.status
 
@@ -45,6 +45,13 @@ export class AbsenceService {
   listerAbsence(): Observable<Absence[]> {
     this.refresh()
     return this.absenceSubject.asObservable()
+  }
+
+  listerAbsenceParStatus(status:string) : Observable<Absence[]> {
+    // TODO sauvegarder le nouvelle demande 
+
+    return this.http.get<Absence[]>(`${url_server}/absences?status=${status}`, httpOptions);
+    
   }
 
   absenceAsk(matricule:string, absence:Absence){

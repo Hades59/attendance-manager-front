@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 
 import {AbsenceService} from '../../shared/service/absence.service'
-import {Absence} from '../../domain/absence'
+import {Absence} from '../../shared/domain/absence'
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
 @Component({
   selector: 'app-absence-update',
