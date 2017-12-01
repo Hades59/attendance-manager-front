@@ -20,11 +20,11 @@ export class AbsenceDeleteComponent implements OnInit {
   }
 
 
-  delete(){
+  delete(absence: Absence){
     var matricule = localStorage.getItem('matricule');// le matricule est normalement stocké dans le locale storage après cnx
     matricule = "MAT01" //#####################################################################################################
 
-    this.absenceService.absenceDelete(matricule,this.absence);
+    this.absenceService.absenceDelete(matricule, absence);
     this.closeModal.emit('bye')
     
   }
