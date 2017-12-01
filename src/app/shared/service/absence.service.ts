@@ -78,5 +78,6 @@ export class AbsenceService {
       let date = new Date()
       this.http.delete<Absence>(`${url_server}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
   }
-  
+
+   
 }
