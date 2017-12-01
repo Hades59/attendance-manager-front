@@ -91,5 +91,23 @@ export class AbsenceService {
      
   }
 
-   
+  validAbs(uneAbs:Absence):Observable<Absence[]> {
+    // TODO Aimer un collègue
+    uneAbs.status="VALIDEE"
+    this.http.put<Absence[]>(`${url_server}/absences/`+`${uneAbs.id}/status`, httpOptions)
+    .subscribe(col => {
+      this.absenceSubject.next(this.absences)
+    })
+    return this.absenceSubject.asObservable()
+  }
+  
+  rejectAbs(uneAbs:Absence):Observable<Absence[]> {
+    // TODO Aimer un collègue
+    uneAbs.status="REJETEE"
+    this.http.put<Absence[]>(`${url_server}/absences/`+`${uneAbs.id}/status`, httpOptions)
+    .subscribe(col => {
+      this.absenceSubject.next(this.absences)
+    })
+    return this.absenceSubject.asObservable()
+  }
 }
