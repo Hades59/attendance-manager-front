@@ -24,11 +24,11 @@
             <td>{{absence.endDate|date: 'dd/MM/yyyy'}}</td>
             <td>{{absence.type | minuscule}}</td>
             <td>{{absence.status | minuscule}}</td>
-            <td>
+            <td align="center"> 
               <div class="row">
-                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContent(deleteAbsence,absence)"></i>
-                <i id="update" class="fa fa-pencil col-3 btn bordered" (click)="openContent(updateAbsence,absence)"></i>
-                <i id="visualize" class="fa fa-eye col-3 btn bordered" (click)="openContent(visualizeAbsence,absence)"></i>
+                <i *ngIf="absence.type != 'MISSION'" id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContent(deleteAbsence,absence)"></i>
+                <i *ngIf="absence.status == 'INITIALE' && absence.type != 'MISSION'"  id="update" class="fa fa-pencil col-3 btn bordered" (click)="openContent(updateAbsence,absence)"></i>
+                <i *ngIf="absence.type == 'MISSION'" id="visualize" class="fa fa-eye col-3 btn bordered" (click)="openContent(visualizeAbsence,absence)"></i>
               </div>
             </td>
           </tr>
@@ -50,17 +50,17 @@
 
 <!-- MODAL Modification d'absnece -->
 <ng-template #updateAbsence>
-    <app-absence-update  [absence]="currentAbsence" (closeModal)="closeModal()"> </app-absence-update>
+    <app-absence-update  [absence]="currentAbsence"> </app-absence-update>
   </ng-template>
 
   <!-- MODAL suppression d'absnece -->
   <ng-template #deleteAbsence>
-      <app-absence-delete [absence]="currentAbsence" (closeModal)="closeModal()"></app-absence-delete>
+      <app-absence-delete [absence]="currentAbsence"></app-absence-delete>
   </ng-template>
 
   <!-- MODAL visualisation d'absnece -->
   <ng-template #visualizeAbsence>
-      <app-absence-visualize ></app-absence-visualize>
+      <app-absence-visualize></app-absence-visualize>
   </ng-template>
   
   
