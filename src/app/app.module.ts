@@ -28,7 +28,6 @@ import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 const appRoutes: Routes = [ 
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
   { path: 'accueil', component: AccueilComponent },
-  { path: 'gestionAbs', component: AbsenceVisualizeComponent},
   { path: 'planningAbs', component: PlanningAbsComponent},
   { path: 'gestionAbs', component: AbsenceVisuComponent},
   { path: 'request', component: AbsenceRequestComponent},

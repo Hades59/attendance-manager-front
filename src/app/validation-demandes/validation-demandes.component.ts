@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbsenceService } from '../shared/service/absence.service';
+import { Absence } from '../domain/absence';
 
 @Component({
   selector: 'app-validation-demandes',
@@ -7,18 +8,22 @@ import { AbsenceService } from '../shared/service/absence.service';
   styleUrls: ['./validation-demandes.component.css']
 })
 export class ValidationDemandesComponent implements OnInit {
-
+  absences:Absence[] = []
   constructor(public absenceService: AbsenceService) { 
-    this.absenceService.listerAbsenceParStatus("EN_ATTENTE_VALIDIDATION").subscribe() }
+    this.absenceService.listerAbsenceParStatus("EN_ATTENTE_VALIDIDATION")
+                        .subscribe(abs => {
+                          this.absences = abs
+                        });
+  }
 
   ngOnInit() {
   }
 
-  /*valid(abscence:Abscence){
-    this.'...'Service.validAbs(abscence)
+  valid(absence:Absence){
+    this.absenceService.validAbs(absence)
   }
-  reject(abscence:Abscence){
-    this.'...'Service.rejectAbs(abscence)
+
+  reject(absence:Absence){
+    this.absenceService.rejectAbs(absence)
   }
-  */
 }
