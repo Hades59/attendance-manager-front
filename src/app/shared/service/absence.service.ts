@@ -26,6 +26,7 @@ export class AbsenceService {
   refresh(): void {
     this.http.get<any>(`${url_server}/absences`)
       .subscribe(abs => {
+        this.absences = []
         abs.forEach(e => {
           let begin = new Date(e.beginDate.substring(4, 0), e.beginDate.substring(7, 5), e.beginDate.substring(10, 8))
           let end = new Date(e.endDate.substring(4, 0), e.endDate.substring(7, 5), e.endDate.substring(10, 8))
@@ -78,12 +79,17 @@ export class AbsenceService {
       console.log(data);
       
       this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe() 
+      this.refresh()
+      
   }
 
-  absenceDelete(matricule:string, absence:Absence){
+  absenceDelete(matricule:string, absence:Absence): Observable<Absence[]>{
 
       let date = new Date()
       this.http.delete<Absence>(`${url_server}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
+      this.refresh()
+      return this.absenceSubject.asObservable()
+     
   }
   
 }
