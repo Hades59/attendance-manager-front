@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import * as moment from 'moment';
 import {AbsenceService} from '../../shared/service/absence.service';
 import {Absence} from '../../shared/domain/absence';
@@ -13,6 +13,8 @@ import {Absence} from '../../shared/domain/absence';
 export class AbsenceRequestComponent implements OnInit {
 
   @Input() absence:Absence;
+  @Output() closeModal:EventEmitter<string> = new EventEmitter()
+  
 
   constructor(private absenceService:AbsenceService) { }
 
@@ -43,13 +45,15 @@ export class AbsenceRequestComponent implements OnInit {
       var matricule = localStorage.getItem('matricule');
       matricule = "MAT01"
       this.absenceService.absenceAsk(matricule, absence)
+      // close
+      this.closeModal.emit('bye')
     }
   }
  
 
-  cancel(){// TODO: Retour visualisation des demandes
-
-  }
+  cancel($event){// TODO: Retour visualisation des demandes
+    this.closeModal.emit('bye')    
+ }
 
   private alertShow(alert,msg){
     alert.style.visibility = 'visible'
