@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Absence } from './shared/domain/absence'
 import { AbsenceService } from './shared/service/absence.service';
 import { AppComponent } from './app.component';
@@ -44,7 +44,6 @@ const appRoutes: Routes = [
     AbsenceUpdateComponent,
     AbsenceVisualizeComponent,
     AbsenceRequestComponent,
-    AbsenceUpdateComponent,
     TypeCongePipe
   ],
 
@@ -54,7 +53,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AbsenceService],
+  providers: [AbsenceService, NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

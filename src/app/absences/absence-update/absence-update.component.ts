@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 
 import {AbsenceService} from '../../shared/service/absence.service'
 import {Absence} from '../../domain/absence'
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
 @Component({
   selector: 'app-absence-update',
   templateUrl: './absence-update.component.html',
@@ -13,6 +14,8 @@ export class AbsenceUpdateComponent implements OnInit {
   constructor(private absenceService:AbsenceService) { }
 
   @Input() absence:Absence;
+
+  @Output() closeModal:EventEmitter<string> = new EventEmitter()
 
   ngOnInit() {
     
@@ -51,12 +54,13 @@ export class AbsenceUpdateComponent implements OnInit {
 
       // UPDATE
       this.absenceService.absenceUpdate(matricule,this.absence)
+      this.closeModal.emit('bye')
       
   }
 }
 
   cancel(){// TODO: Retour visualisation des demandes
-    
+    this.closeModal.emit('bye')
       }
 
   private alertShow(alert,msg){

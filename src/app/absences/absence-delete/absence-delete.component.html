@@ -1,6 +1,9 @@
 <div class="container">
     <div class="form-group">
-      <label>Confirmez-vous la suppression de la demande suivante ?</label>
+        <div class="jumbotron text-center">
+       
+      <h1>Confirmez-vous la suppression ?</h1>
+    </div>
       <ul>
         <li>
           <label>Date de début : {{absence.beginDate | date:'dd-MM-yyyy'}}</label>
@@ -20,7 +23,7 @@
   
     <input type="button" class="btn btn-danger" value="Annuler" (click) ="cancel()" />
   
-    <input type="submit" class="btn btn-success" value="Valider" (click) ="delete(absence.id)" />
+    <input type="submit" class="btn btn-success" value="Valider" (click) ="delete(absence)" />
   
     <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
   
