@@ -9,17 +9,14 @@
 
 #delete:hover{
     background-color: red;
-    cursor:pointer;
  }
 
  #update:hover{
     background-color: #6495ED;
-    cursor:pointer;
  }
  
  #visualize:hover{
     background-color: green;
-    cursor:pointer;
  }
 
 
