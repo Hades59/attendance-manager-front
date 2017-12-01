@@ -3,7 +3,7 @@
   <h1>Validation des demandes</h1>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-stripped">
   <thead>
     <tr>
       <th scope="col">Date de début</th>
@@ -15,25 +15,23 @@
   </thead>
   <tbody>
     <tr *ngFor="let abs of absences">
-        <td class="">
-            <h6>{{abs._dateDeb}}</h6>
+        <td  class="align-middle">
+            <h6>{{abs.beginDate}}</h6>
         </td>
-        <td class="">
-            <h6>{{abs._dateFin}}</h6>
+        <td class="align-middle">
+            <h6>{{abs.endDate}}</h6>
         </td>
-        <td class="">
-            <h6>{{abs._type}}</h6>
+        <td class="align-middle">
+            <h6>{{abs.type | minuscule}}</h6>
         </td>
-        <td class="">
-            <h6>{{abs._nom}}</h6>
-        </td>
-        <td class="">
-            <h6>{{abs._dateDeb}}</h6>
+        <td class="align-middle">
+            <!-- changer id par nom -->
+            <h6>{{abs.id}}</h6>
         </td>
         <td>
-            <button class="btn btn-outline-success" (click)="valid(abs)">v</button>
-            <button class="btn btn-outline-danger" (click)="reject(abs)">x</button>
-          </td>
+            <button class="btn btn-outline-success align-middle" (click)="valid(abs)"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <button class="btn btn-outline-danger align-middle" (click)="reject(abs)"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </td>
     </tr>
   </tbody>
 </table>
