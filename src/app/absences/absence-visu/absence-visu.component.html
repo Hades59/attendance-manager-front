@@ -50,17 +50,17 @@
 
 <!-- MODAL Modification d'absnece -->
 <ng-template #updateAbsence>
-    <app-absence-update  [absence]="currentAbsence"> </app-absence-update>
+    <app-absence-update  [absence]="currentAbsence" (closeModal)="closeModal()"> </app-absence-update>
   </ng-template>
 
   <!-- MODAL suppression d'absnece -->
   <ng-template #deleteAbsence>
-      <app-absence-delete [absence]="currentAbsence"></app-absence-delete>
+      <app-absence-delete [absence]="currentAbsence" (closeModal)="closeModal()"></app-absence-delete>
   </ng-template>
 
   <!-- MODAL visualisation d'absnece -->
   <ng-template #visualizeAbsence>
-      <app-absence-visualize></app-absence-visualize>
+      <app-absence-visualize ></app-absence-visualize>
   </ng-template>
   
   
