@@ -14,6 +14,7 @@ export class AbsenceVisuComponent implements OnInit {
 
   absences: Absence[]
   currentAbsence : Absence
+  
   constructor(private _absenceService : AbsenceService,private modalService: NgbModal) { 
 
   }

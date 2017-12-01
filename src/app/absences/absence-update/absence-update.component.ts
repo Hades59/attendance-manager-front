@@ -65,4 +65,5 @@ export class AbsenceUpdateComponent implements OnInit {
     setTimeout(function(){alert.style.visibility = 'hidden'},8000);
   }
 
+  
 }

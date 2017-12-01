@@ -45,7 +45,7 @@ export class AbsenceRequestComponent implements OnInit {
       this.absenceService.absenceAsk(matricule, absence)
     }
   }
-
+ 
 
   cancel(){// TODO: Retour visualisation des demandes
 
