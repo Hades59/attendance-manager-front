@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbsenceService } from '../shared/service/absence.service';
-import { Absence } from '../domain/absence';
+import { Absence } from '../shared/domain/absence';
 
 @Component({
   selector: 'app-validation-demandes',
@@ -10,7 +10,7 @@ import { Absence } from '../domain/absence';
 export class ValidationDemandesComponent implements OnInit {
   absences:Absence[] = []
   constructor(public absenceService: AbsenceService) { 
-    this.absenceService.listerAbsenceParStatus("EN_ATTENTE_VALIDIDATION")
+    this.absenceService.listerAbsenceParStatus("EN_ATTENTE_VALIDATION")
                         .subscribe(abs => {
                           this.absences = abs
                         });

@@ -68,7 +68,8 @@
 <div class="text-center">
   <div class="row">
   <div class="row offset-md-4 col-md-4"> 
-    <h3>{{ viewDate | calendarDate:(view+'ViewTitle'):'fr' }}</h3>
+    <!-- Le pipe minuscule est utilisé pour mettre une majuscule sur la première lettre du mois -->
+    <h3>{{ viewDate | calendarDate:(view+'ViewTitle'):'fr' | minuscule }}</h3>
   </div>
   </div>
 </div>
