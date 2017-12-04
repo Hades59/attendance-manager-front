@@ -1,2 +1,2 @@
-export class Feries {
+export class Ferie {
 }
