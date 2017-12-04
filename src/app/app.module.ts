@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
-
 import { Absence } from './shared/domain/absence'
 import { AppComponent } from './app.component';
 import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.component';
@@ -23,6 +21,7 @@ import { AbsenceUpdateComponent } from './absences/absence-update/absence-update
 import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-visualize.component';
 import { AbsenceService } from './shared/service/absence.service';
 import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
+import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
 
 
 const appRoutes: Routes = [ 
@@ -31,6 +30,7 @@ const appRoutes: Routes = [
   { path: 'planningAbs', component: PlanningAbsComponent},
   { path: 'gestionAbs', component: AbsenceVisuComponent},
   { path: 'request', component: AbsenceRequestComponent},
+  { path: 'visualFeries', component: FeriesVisualisationComponent},
   { path: '**', redirectTo: 'accueil'} // redirige vers la route page1 par défaut
 ];
 
@@ -51,7 +51,8 @@ const appRoutes: Routes = [
     AbsenceUpdateComponent,
     AbsenceVisualizeComponent,
     AbsenceRequestComponent,
-    TypeCongePipe
+    TypeCongePipe,
+    FeriesVisualisationComponent
   ],
 
   imports: [
