@@ -21,7 +21,6 @@ export class AbsenceRequestComponent implements OnInit {
   }
 
   validate(startDate,endDate,typeConge,motif,alert) {
-    console.log("!"+startDate.value+"!");
     var mStartDate = moment(startDate.value).format("DD-MM-YYYY");
     var mEndDate =  moment(endDate.value).format("DD-MM-YYYY");
 

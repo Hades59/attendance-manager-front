@@ -62,7 +62,21 @@ export class AbsenceService {
       "motif": absence.motif,
       "type": absence.type
     }
-    this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`, data, httpOptions).subscribe()
+    console.log("Id avant :" + absence.id);
+
+    this.http.post<number>(`${environment.apiUrl}/users/${matricule}/absences`, data, httpOptions).subscribe(id => {
+      console.log(id);
+
+      absence.id = id
+      console.log(absence.id);
+      absence.status = "INITIALE"
+      console.log("Id après :" + absence.id);
+      this.absences.push(absence)
+      this.absenceSubject.next(this.absences)
+      return this.absenceSubject.asObservable()
+
+    })
+
 
   }
 
@@ -83,7 +97,6 @@ export class AbsenceService {
   }
 
   absenceDelete(matricule: string, absence: Absence): Observable<Absence[]> {
-
     this.http.delete<Absence>(`${environment.apiUrl}/users/${matricule}/absences/${absence.id}`, httpOptions).subscribe()
     this.absences = this.absences.filter(abs => abs != absence);
     this.absenceSubject.next(this.absences)
