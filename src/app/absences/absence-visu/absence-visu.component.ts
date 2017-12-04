@@ -29,6 +29,10 @@ export class AbsenceVisuComponent implements OnInit {
     this.currentModal = this.modalService.open(content);
   }
 
+  openContentRequest(content){
+    this.currentModal = this.modalService.open(content);
+  }
+
   closeModal() {
     this.currentModal.close();
     

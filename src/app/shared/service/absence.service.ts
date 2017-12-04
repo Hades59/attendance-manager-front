@@ -27,15 +27,14 @@ export class AbsenceService {
   refresh(): void {
     this.http.get<any>(`${environment.apiUrl}/absences`)
       .subscribe(abs => {
-        this.absences = []
         abs.forEach(e => {
           let begin = new Date(e.beginDate.substring(4, 0), e.beginDate.substring(7, 5), e.beginDate.substring(10, 8))
           let end = new Date(e.endDate.substring(4, 0), e.endDate.substring(7, 5), e.endDate.substring(10, 8))
           let motif = e.motif
           let type = e.type
-          let absence = new Absence(begin, end, type, motif);
+          let status = e.status
+          let absence = new Absence(begin, end, motif, type, status);
           absence.id = e.id
-          absence.status = e.status
 
           this.absences.push(absence)
         });
@@ -56,7 +55,6 @@ export class AbsenceService {
   }
 
   absenceAsk(matricule:string, absence:Absence){
-
     let data = {
       "beginDate" :absence.beginDate+"T00:00:00",
       "endDate":absence.endDate+"T00:00:00",
@@ -73,7 +71,8 @@ export class AbsenceService {
       "beginDate" :absence.beginDate+"T00:00:00",
       "endDate":absence.endDate+"T00:00:00",
       "motif":absence.motif,
-      "type":absence.type       
+      "type":absence.type,
+      "status":absence.status
       }
       console.log(data);
       
@@ -91,7 +90,6 @@ export class AbsenceService {
   }
 
   validAbs(uneAbs:Absence):Observable<Absence[]> {
-    // TODO Aimer un collègue
     uneAbs.status="VALIDEE"
     this.http.put<Absence[]>(`${environment.apiUrl}/absences/`+`${uneAbs.id}/status`, httpOptions)
     .subscribe(col => {
@@ -101,7 +99,6 @@ export class AbsenceService {
   }
   
   rejectAbs(uneAbs:Absence):Observable<Absence[]> {
-    // TODO Aimer un collègue
     uneAbs.status="REJETEE"
     this.http.put<Absence[]>(`${environment.apiUrl}/absences/`+`${uneAbs.id}/status`, httpOptions)
     .subscribe(col => {
@@ -109,4 +106,5 @@ export class AbsenceService {
     })
     return this.absenceSubject.asObservable()
   }
+
 }
