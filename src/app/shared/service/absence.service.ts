@@ -26,6 +26,7 @@ export class AbsenceService {
   refresh(): void {
     this.http.get<any>(`${url_server}/absences`)
       .subscribe(abs => {
+        this.absences = []
         abs.forEach(e => {
           let begin = new Date(e.beginDate.substring(4, 0), e.beginDate.substring(7, 5), e.beginDate.substring(10, 8))
           let end = new Date(e.endDate.substring(4, 0), e.endDate.substring(7, 5), e.endDate.substring(10, 8))
@@ -36,7 +37,9 @@ export class AbsenceService {
           absence.status = e.status
 
           this.absences.push(absence)
+          
         });
+       
         this.absenceSubject.next(this.absences)
       })
 
@@ -78,12 +81,36 @@ export class AbsenceService {
       console.log(data);
       
       this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe() 
+      this.refresh()
+      
   }
 
-  absenceDelete(matricule:string, absence:Absence){
+  absenceDelete(matricule:string, absence:Absence): Observable<Absence[]>{
 
-      let date = new Date()
       this.http.delete<Absence>(`${url_server}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
+      this.absences = this.absences.filter(abs =>  abs != absence  );      
+      this.absenceSubject.next(this.absences)
+      return this.absenceSubject.asObservable()
+     
+  }
+
+  validAbs(uneAbs:Absence):Observable<Absence[]> {
+    // TODO Aimer un collègue
+    uneAbs.status="VALIDEE"
+    this.http.put<Absence[]>(`${url_server}/absences/`+`${uneAbs.id}/status`, httpOptions)
+    .subscribe(col => {
+      this.absenceSubject.next(this.absences)
+    })
+    return this.absenceSubject.asObservable()
   }
   
+  rejectAbs(uneAbs:Absence):Observable<Absence[]> {
+    // TODO Aimer un collègue
+    uneAbs.status="REJETEE"
+    this.http.put<Absence[]>(`${url_server}/absences/`+`${uneAbs.id}/status`, httpOptions)
+    .subscribe(col => {
+      this.absenceSubject.next(this.absences)
+    })
+    return this.absenceSubject.asObservable()
+  }
 }

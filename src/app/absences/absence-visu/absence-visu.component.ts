@@ -27,12 +27,12 @@ export class AbsenceVisuComponent implements OnInit {
   openContent(content, absence){
     this.currentAbsence = absence;
     this.currentModal = this.modalService.open(content);
-    // TODO : supprimer de list si il confirme la suppression
-    //this.absences = this.absences.filter((a) => a != absence)
   }
 
   closeModal() {
     this.currentModal.close();
-    
   }
+  /*updateListAbsence(pAbs:Absence){
+    this.absences = this.absences.filter(abs =>  abs != pAbs  );
+  }*/
 }

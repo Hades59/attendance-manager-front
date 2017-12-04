@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'planningAbs', component: PlanningAbsComponent},
   { path: 'gestionAbs', component: AbsenceVisuComponent},
   { path: 'request', component: AbsenceRequestComponent},
-  { path: 'visualFeries', component: FeriesVisualisationComponent},
+  { path: 'joursFeries', component: FeriesVisualisationComponent},
   { path: '**', redirectTo: 'accueil'} // redirige vers la route page1 par défaut
 ];
 
@@ -63,7 +63,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes)

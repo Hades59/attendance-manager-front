@@ -4,6 +4,12 @@
 <div class="jumbotron text-center">
   <h2>Gestion des absences</h2>
 </div>
+<div class="row">
+    <div class="col">
+      <h3 class="text-right">Demander une absence</h3>
+    </div>
+    <div class="btn btn-primary" (click)="openContent(askAbsence)">+</div>
+  </div>
 <div class="container-fluid">
   <div class="row">
     <div class="col">
@@ -24,11 +30,11 @@
             <td>{{absence.endDate|date: 'dd/MM/yyyy'}}</td>
             <td>{{absence.type | minuscule}}</td>
             <td>{{absence.status | minuscule}}</td>
-            <td>
+            <td align="center"> 
               <div class="row">
-                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContent(deleteAbsence,absence)"></i>
-                <i id="update" class="fa fa-pencil col-3 btn bordered" (click)="openContent(updateAbsence,absence)"></i>
-                <i id="visualize" class="fa fa-eye col-3 btn bordered" (click)="openContent(visualizeAbsence,absence)"></i>
+                <i *ngIf="absence.type != 'MISSION'" id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContent(deleteAbsence,absence)"></i>
+                <i *ngIf="absence.status == 'INITIALE' && absence.type != 'MISSION'"  id="update" class="fa fa-pencil col-3 btn bordered" (click)="openContent(updateAbsence,absence)"></i>
+                <i *ngIf="absence.type == 'MISSION'" id="visualize" class="fa fa-eye col-3 btn bordered" (click)="openContent(visualizeAbsence,absence)"></i>
               </div>
             </td>
           </tr>
@@ -36,16 +42,11 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <h3 class="text-right">Demander une absence</h3>
-    </div>
-    <div class="btn btn-primary" (click)="openContent(askAbsence)">+</div>
-  </div>
+
 </div>
 <!-- MODAL Demande d'absence -->
 <ng-template #askAbsence>
-  <app-absence-request></app-absence-request>
+  <app-absence-request (closeModal)="closeModal()"></app-absence-request>
 </ng-template>
 
 <!-- MODAL Modification d'absnece -->
@@ -55,12 +56,13 @@
 
   <!-- MODAL suppression d'absnece -->
   <ng-template #deleteAbsence>
-      <app-absence-delete [absence]="currentAbsence" (closeModal)="closeModal()"></app-absence-delete>
+    <!-- (updateListAbsence)="updateListAbsence($event)" -->
+      <app-absence-delete [absence]="currentAbsence" (closeModal)="closeModal()" ></app-absence-delete>
   </ng-template>
 
   <!-- MODAL visualisation d'absnece -->
   <ng-template #visualizeAbsence>
-      <app-absence-visualize ></app-absence-visualize>
+      <app-absence-visualize (closeModal)="closeModal()"></app-absence-visualize>
   </ng-template>
   
   
