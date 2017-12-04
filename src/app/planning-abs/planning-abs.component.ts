@@ -76,7 +76,7 @@ export class PlanningAbsComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, public absenceService: AbsenceService) { 
+  constructor(public absenceService: AbsenceService) { 
     this.events = this.refresh.asObservable()
     this.absenceService.listerAbsenceParStatus("VALIDEE")
                        .subscribe(absences => absences.forEach(abs => {
