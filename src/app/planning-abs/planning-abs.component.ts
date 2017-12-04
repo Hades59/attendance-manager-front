@@ -10,12 +10,13 @@ import { startOfDay,
          isSameDay,
          isSameMonth,
          addHours } from 'date-fns';
-import { Subject, Observable} from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent,
          CalendarEventAction,
          CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { AbsenceService } from '../shared/service/absence.service';
+import { Subject} from 'rxjs/Subject';
+import { Observable} from 'rxjs/Observable';
 
 const colors: any = {
   red: {

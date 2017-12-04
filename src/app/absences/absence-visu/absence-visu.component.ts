@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Absence } from '../../shared/domain/absence'
 import { AbsenceService } from '../../shared/service/absence.service';
 import { DatePipe } from '@angular/common';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons,NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -14,8 +14,9 @@ export class AbsenceVisuComponent implements OnInit {
 
   absences: Absence[]
   currentAbsence : Absence
+  protected currentModal:NgbModalRef
   
-  constructor(private _absenceService : AbsenceService,private modalService: NgbModal) { 
+  constructor(private _absenceService : AbsenceService, private modalService: NgbModal) { 
 
   }
 
@@ -24,9 +25,18 @@ export class AbsenceVisuComponent implements OnInit {
   }
 
   openContent(content, absence){
-    console.log(absence)
     this.currentAbsence = absence;
-    const contentComponentInstance = this.modalService.open(content).componentInstance;
-
+    this.currentModal = this.modalService.open(content);
   }
+
+  openContentRequest(content){
+    this.currentModal = this.modalService.open(content);
+  }
+
+  closeModal() {
+    this.currentModal.close();
+  }
+  /*updateListAbsence(pAbs:Absence){
+    this.absences = this.absences.filter(abs =>  abs != pAbs  );
+  }*/
 }

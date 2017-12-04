@@ -12,3 +12,7 @@ table {
 .alert {
   margin-top: 1%;
 }
+
+.btn{
+    cursor: pointer;
+}
