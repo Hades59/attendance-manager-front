@@ -62,9 +62,14 @@ export class AbsenceService {
       "motif": absence.motif,
       "type": absence.type
     }
-    this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`, data, httpOptions).subscribe()
-
-  }
+    this.http.post<number>(`${environment.apiUrl}/users/${matricule}/absences`, data, httpOptions).subscribe(id =>{
+   absence.id = id
+  absence.status = "INITIALE"
+  this.absences.push(absence)
+  this.absenceSubject.next(this.absences)
+  return this.absenceSubject.asObservable()
+  })
+}
 
   absenceUpdate(matricule: string, absence: Absence) {
     let data = {
@@ -75,7 +80,6 @@ export class AbsenceService {
       "type": absence.type,
       "status": absence.status
     }
-    console.log(data);
 
     this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`, data, httpOptions).subscribe()
     this.refresh()
