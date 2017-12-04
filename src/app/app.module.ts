@@ -24,6 +24,7 @@ import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
 
 
+
 const appRoutes: Routes = [ 
   { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
   { path: 'accueil', component: AccueilComponent },
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
     AbsenceRequestComponent,
     TypeCongePipe,
     FeriesVisualisationComponent
+
   ],
 
   imports: [
@@ -63,7 +65,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes)
