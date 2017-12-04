@@ -37,7 +37,9 @@ export class AbsenceService {
           absence.status = e.status
 
           this.absences.push(absence)
+          
         });
+       
         this.absenceSubject.next(this.absences)
       })
 
@@ -86,7 +88,8 @@ export class AbsenceService {
   absenceDelete(matricule:string, absence:Absence): Observable<Absence[]>{
 
       this.http.delete<Absence>(`${url_server}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
-      this.refresh()
+      this.absences = this.absences.filter(abs =>  abs != absence  );      
+      this.absenceSubject.next(this.absences)
       return this.absenceSubject.asObservable()
      
   }
