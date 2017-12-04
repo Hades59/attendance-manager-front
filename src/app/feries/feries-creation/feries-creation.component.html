@@ -21,9 +21,9 @@
       <input type="text" class="form-control" #commentaire>
     </div>
   
-    <input type="button" class="btn btn-danger" value="Annuler"  />
+    <input type="button" class="btn btn-danger" value="Annuler"  (click) ="cancel()" />
   
-    <input type="submit" class="btn btn-success" value="Valider" />
+    <input type="submit" class="btn btn-success" value="Valider" (click) ="validate()" />
   
     <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
   
