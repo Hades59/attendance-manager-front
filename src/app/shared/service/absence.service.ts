@@ -52,9 +52,7 @@ export class AbsenceService {
   }
 
   listerAbsenceParStatus(status: string): Observable<Absence[]> {
-
     return this.http.get<Absence[]>(`${environment.apiUrl}/absences?status=${status}`, httpOptions);
-
   }
 
   absenceAsk(matricule: string, absence: Absence) {
