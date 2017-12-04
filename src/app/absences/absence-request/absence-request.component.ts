@@ -48,9 +48,8 @@ export class AbsenceRequestComponent implements OnInit {
       this.closeModal.emit('bye')
     }
   }
- 
 
-  cancel(){// TODO: Retour visualisation des demandes
+  cancel(){
     this.closeModal.emit('bye')    
  }
 

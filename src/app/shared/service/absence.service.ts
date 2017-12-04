@@ -27,6 +27,7 @@ export class AbsenceService {
   refresh(): void {
     this.http.get<any>(`${environment.apiUrl}/absences`)
       .subscribe(abs => {
+        this.absences = []
         abs.forEach(e => {
           let begin = new Date(e.beginDate.substring(4, 0), e.beginDate.substring(7, 5), e.beginDate.substring(10, 8))
           let end = new Date(e.endDate.substring(4, 0), e.endDate.substring(7, 5), e.endDate.substring(10, 8))
@@ -37,7 +38,9 @@ export class AbsenceService {
           absence.id = e.id
 
           this.absences.push(absence)
+
         });
+
         this.absenceSubject.next(this.absences)
       })
 
@@ -48,62 +51,63 @@ export class AbsenceService {
     return this.absenceSubject.asObservable()
   }
 
-  listerAbsenceParStatus(status:string) : Observable<Absence[]> {
+  listerAbsenceParStatus(status: string): Observable<Absence[]> {
 
     return this.http.get<Absence[]>(`${environment.apiUrl}/absences?status=${status}`, httpOptions);
-    
+
   }
 
-  absenceAsk(matricule:string, absence:Absence){
+  absenceAsk(matricule: string, absence: Absence) {
     let data = {
-      "beginDate" :absence.beginDate+"T00:00:00",
-      "endDate":absence.endDate+"T00:00:00",
-      "motif":absence.motif,
-      "type":absence.type    
+      "beginDate": absence.beginDate + "T00:00:00",
+      "endDate": absence.endDate + "T00:00:00",
+      "motif": absence.motif,
+      "type": absence.type
     }
-    this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`,data,httpOptions).subscribe()
-    
+    this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`, data, httpOptions).subscribe()
+
   }
 
-  absenceUpdate(matricule:string, absence:Absence){
+  absenceUpdate(matricule: string, absence: Absence) {
     let data = {
-      "id":absence.id,
-      "beginDate" :absence.beginDate+"T00:00:00",
-      "endDate":absence.endDate+"T00:00:00",
-      "motif":absence.motif,
-      "type":absence.type,
-      "status":absence.status
-      }
-      console.log(data);
-      
-      this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`,data,httpOptions).subscribe() 
-      this.refresh()
-      
+      "id": absence.id,
+      "beginDate": absence.beginDate + "T00:00:00",
+      "endDate": absence.endDate + "T00:00:00",
+      "motif": absence.motif,
+      "type": absence.type,
+      "status": absence.status
+    }
+    console.log(data);
+
+    this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`, data, httpOptions).subscribe()
+    this.refresh()
+
   }
 
-  absenceDelete(matricule:string, absence:Absence): Observable<Absence[]>{
+  absenceDelete(matricule: string, absence: Absence): Observable<Absence[]> {
 
-      this.http.delete<Absence>(`${environment.apiUrl}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
-      this.refresh()
-      return this.absenceSubject.asObservable()
-     
+    this.http.delete<Absence>(`${environment.apiUrl}/users/${matricule}/absences/${absence.id}`, httpOptions).subscribe()
+    this.absences = this.absences.filter(abs => abs != absence);
+    this.absenceSubject.next(this.absences)
+    return this.absenceSubject.asObservable()
+
   }
 
-  validAbs(uneAbs:Absence):Observable<Absence[]> {
-    uneAbs.status="VALIDEE"
-    this.http.put<Absence[]>(`${environment.apiUrl}/absences/`+`${uneAbs.id}/status`, httpOptions)
-    .subscribe(col => {
-      this.absenceSubject.next(this.absences)
-    })
+  validAbs(uneAbs: Absence): Observable<Absence[]> {
+    uneAbs.status = "VALIDEE"
+    this.http.put<Absence[]>(`${environment.apiUrl}/absences/` + `${uneAbs.id}/status`, httpOptions)
+      .subscribe(col => {
+        this.absenceSubject.next(this.absences)
+      })
     return this.absenceSubject.asObservable()
   }
-  
-  rejectAbs(uneAbs:Absence):Observable<Absence[]> {
-    uneAbs.status="REJETEE"
-    this.http.put<Absence[]>(`${environment.apiUrl}/absences/`+`${uneAbs.id}/status`, httpOptions)
-    .subscribe(col => {
-      this.absenceSubject.next(this.absences)
-    })
+
+  rejectAbs(uneAbs: Absence): Observable<Absence[]> {
+    uneAbs.status = "REJETEE"
+    this.http.put<Absence[]>(`${environment.apiUrl}/absences/` + `${uneAbs.id}/status`, httpOptions)
+      .subscribe(col => {
+        this.absenceSubject.next(this.absences)
+      })
     return this.absenceSubject.asObservable()
   }
 
