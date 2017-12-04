@@ -32,7 +32,7 @@ export class AbsenceVisuComponent implements OnInit {
   closeModal() {
     this.currentModal.close();
   }
-  updateListAbsence(pAbs:Absence){
-   // this.absences = this.absences.filter(abs =>  abs != pAbs  );
-  }
+  /*updateListAbsence(pAbs:Absence){
+    this.absences = this.absences.filter(abs =>  abs != pAbs  );
+  }*/
 }

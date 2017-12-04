@@ -32,8 +32,6 @@ export class AbsenceDeleteComponent implements OnInit {
     
   }
 
-
-  // TODO : 
   cancel(){
     this.closeModal.emit('bye')
   }

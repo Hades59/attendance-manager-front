@@ -39,8 +39,7 @@ export class AbsenceService {
           this.absences.push(absence)
           
         });
-        console.log("###################################################################### : "+ this.absences.length);
-        
+       
         this.absenceSubject.next(this.absences)
       })
 
