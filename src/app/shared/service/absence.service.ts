@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 }
-const url_server = "http://localhost:8080"
+
 @Injectable()
 export class AbsenceService {
 
@@ -24,7 +24,7 @@ export class AbsenceService {
   }
 
   refresh(): void {
-    this.http.get<any>(`${url_server}/absences`)
+    this.http.get<any>(`${environment.apiUrl}/absences`)
       .subscribe(abs => {
         this.absences = []
         abs.forEach(e => {
@@ -49,14 +49,12 @@ export class AbsenceService {
   }
 
   listerAbsenceParStatus(status:string) : Observable<Absence[]> {
-    // TODO sauvegarder le nouvelle demande 
 
-    return this.http.get<Absence[]>(`${url_server}/absences?status=${status}`, httpOptions);
+    return this.http.get<Absence[]>(`${environment.apiUrl}/absences?status=${status}`, httpOptions);
     
   }
 
   absenceAsk(matricule:string, absence:Absence){
-    // TODO sauvegarder le nouvelle demande 
 
     let data = {
       "beginDate" :absence.beginDate+"T00:00:00",
@@ -64,7 +62,7 @@ export class AbsenceService {
       "motif":absence.motif,
       "type":absence.type    
     }
-    this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe()
+    this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`,data,httpOptions).subscribe()
     
   }
 
@@ -78,14 +76,14 @@ export class AbsenceService {
       }
       console.log(data);
       
-      this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe() 
+      this.http.post<Absence>(`${environment.apiUrl}/users/${matricule}/absences`,data,httpOptions).subscribe() 
       this.refresh()
       
   }
 
   absenceDelete(matricule:string, absence:Absence): Observable<Absence[]>{
 
-      this.http.delete<Absence>(`${url_server}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
+      this.http.delete<Absence>(`${environment.apiUrl}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
       this.refresh()
       return this.absenceSubject.asObservable()
      
@@ -94,7 +92,7 @@ export class AbsenceService {
   validAbs(uneAbs:Absence):Observable<Absence[]> {
     // TODO Aimer un collègue
     uneAbs.status="VALIDEE"
-    this.http.put<Absence[]>(`${url_server}/absences/`+`${uneAbs.id}/status`, httpOptions)
+    this.http.put<Absence[]>(`${environment.apiUrl}/absences/`+`${uneAbs.id}/status`, httpOptions)
     .subscribe(col => {
       this.absenceSubject.next(this.absences)
     })
@@ -104,7 +102,7 @@ export class AbsenceService {
   rejectAbs(uneAbs:Absence):Observable<Absence[]> {
     // TODO Aimer un collègue
     uneAbs.status="REJETEE"
-    this.http.put<Absence[]>(`${url_server}/absences/`+`${uneAbs.id}/status`, httpOptions)
+    this.http.put<Absence[]>(`${environment.apiUrl}/absences/`+`${uneAbs.id}/status`, httpOptions)
     .subscribe(col => {
       this.absenceSubject.next(this.absences)
     })
