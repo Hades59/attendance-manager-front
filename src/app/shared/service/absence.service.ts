@@ -87,7 +87,6 @@ export class AbsenceService {
   }
 
   absenceDelete(matricule: string, absence: Absence): Observable<Absence[]> {
-
     this.http.delete<Absence>(`${environment.apiUrl}/users/${matricule}/absences/${absence.id}`, httpOptions).subscribe()
     this.absences = this.absences.filter(abs => abs != absence);
     this.absenceSubject.next(this.absences)
