@@ -22,6 +22,7 @@ import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-
 import { AbsenceService } from './shared/service/absence.service';
 import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
+import { FeriesCreationComponent } from './feries/feries-creation/feries-creation.component';
 
 
 const appRoutes: Routes = [ 
@@ -44,15 +45,13 @@ const appRoutes: Routes = [
     NavManagerComponent,
     ValidationDemandesComponent,
     AccueilComponent,
-    AbsenceRequestComponent,
     PlanningAbsComponent,
-    DatePipe,
     AbsenceDeleteComponent,
     AbsenceUpdateComponent,
     AbsenceVisualizeComponent,
-    AbsenceRequestComponent,
     TypeCongePipe,
-    FeriesVisualisationComponent
+    FeriesVisualisationComponent,
+    FeriesCreationComponent
   ],
 
   imports: [
