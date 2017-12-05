@@ -1,6 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { RequestOptions } from '@angular/http';
+
+import { TokenInterceptor } from './security/token-interceptor';
+import { JwtInterceptor } from './security/jwt-interceptor'
+import { RoleGuardService as AuthGuard } from './security/role-guard.service';
+import { AuthService } from './security/auth.service'
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +17,7 @@ import { Absence } from './shared/domain/absence'
 import { AppComponent } from './app.component';
 import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.component';
 import { NavManagerComponent } from './nav-manager/nav-manager.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DatePipe } from './shared/pipes/date.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
@@ -23,15 +29,25 @@ import { AbsenceUpdateComponent } from './absences/absence-update/absence-update
 import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-visualize.component';
 import { AbsenceService } from './shared/service/absence.service';
 import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
+import { LoginComponent } from './login/login.component';
 
 
-const appRoutes: Routes = [ 
-  { path: 'validDmdes', component: ValidationDemandesComponent }, // /page1 affiche le composant A
+const appRoutes: Routes = [
   { path: 'accueil', component: AccueilComponent },
-  { path: 'planningAbs', component: PlanningAbsComponent},
-  { path: 'gestionAbs', component: AbsenceVisuComponent},
-  { path: 'request', component: AbsenceRequestComponent},
-  { path: '**', redirectTo: 'accueil'} // redirige vers la route page1 par défaut
+  { path: 'login', component: LoginComponent },
+  { path: 'validDmdes', component: ValidationDemandesComponent,
+    canActivate: [AuthGuard], data: { expectedRole: ['ROLE_MANAGER'] }
+  },
+  { path: 'planningAbs', component: PlanningAbsComponent,
+   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_EMPLOYE'] }
+  },
+  { path: 'gestionAbs', component: AbsenceVisuComponent,
+   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_EMPLOYE'] }
+  },
+  { path: 'request', component: AbsenceRequestComponent,
+   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_EMPLOYE'] }
+  },
+  { path: '**', redirectTo: 'accueil'}
 ];
 
 @NgModule({
@@ -51,7 +67,8 @@ const appRoutes: Routes = [
     AbsenceUpdateComponent,
     AbsenceVisualizeComponent,
     AbsenceRequestComponent,
-    TypeCongePipe
+    TypeCongePipe,
+    LoginComponent
   ],
 
   imports: [
@@ -61,13 +78,19 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     HttpClientModule,
     BrowserModule,
-    HttpClientModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AbsenceService, NgbActiveModal],
+  providers: [
+    AbsenceService,
+    NgbActiveModal,
+    AuthService,
+    AuthGuard,
+    //{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   exports: [PlanningAbsComponent]
 })

@@ -10,6 +10,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 }
 const url_server = "http://localhost:8080"
+
 @Injectable()
 export class AbsenceService {
 
@@ -48,23 +49,23 @@ export class AbsenceService {
   }
 
   listerAbsenceParStatus(status:string) : Observable<Absence[]> {
-    // TODO sauvegarder le nouvelle demande 
+    // TODO sauvegarder le nouvelle demande
 
     return this.http.get<Absence[]>(`${url_server}/absences?status=${status}`, httpOptions);
-    
+
   }
 
   absenceAsk(matricule:string, absence:Absence){
-    // TODO sauvegarder le nouvelle demande 
+    // TODO sauvegarder le nouvelle demande
 
     let data = {
       "beginDate" :absence.beginDate+"T00:00:00",
       "endDate":absence.endDate+"T00:00:00",
       "motif":absence.motif,
-      "type":absence.type    
+      "type":absence.type
     }
     this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe()
-    
+
   }
 
   absenceUpdate(matricule:string, absence:Absence){
@@ -73,11 +74,11 @@ export class AbsenceService {
       "beginDate" :absence.beginDate+"T00:00:00",
       "endDate":absence.endDate+"T00:00:00",
       "motif":absence.motif,
-      "type":absence.type       
+      "type":absence.type
       }
       console.log(data);
-      
-      this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe() 
+
+      this.http.post<Absence>(`${url_server}/users/${matricule}/absences`,data,httpOptions).subscribe()
   }
 
   absenceDelete(matricule:string, absence:Absence){
@@ -85,5 +86,5 @@ export class AbsenceService {
       let date = new Date()
       this.http.delete<Absence>(`${url_server}/users/${matricule}/absences/${absence.id}`, httpOptions ).subscribe()
   }
-  
+
 }
