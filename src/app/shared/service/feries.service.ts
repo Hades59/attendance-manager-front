@@ -20,8 +20,23 @@ export class FeriesService {
 
   listerFeries():Observable<Ferie[]>{
     this.http.get<Ferie[]>(`${environment.apiUrl}/feries`, httpOptions)
-    .subscribe(data => this.ferieSubject.next(data))
+    .subscribe(data => {
+      this.feries = data
+      this.ferieSubject.next(this.feries)
+    } )
 
     return this.ferieSubject;
+  }
+
+  ferieDelete( jf: Ferie): Observable<Ferie[]> {
+    console.log("avant : "+this.feries.length);
+    
+    this.http.delete<Ferie>(`${environment.apiUrl}/ferie/${jf.id}`, httpOptions).subscribe()
+    this.feries = this.feries.filter(fer => fer != jf);
+    this.ferieSubject.next(this.feries)
+    console.log(" Après :"+this.feries.length);
+    
+    return this.ferieSubject
+
   }
 }
