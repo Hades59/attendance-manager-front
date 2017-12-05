@@ -16,17 +16,16 @@
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
-            <th>Date de début</th>
-            <th>Date de fin</th>
+            <th>Date</th>
             <th>Type</th>
-            <th>Statut</th>
-            <th>Actions</th>
+            <th>Jour</th>
+            <th>Commentaires</th>
           </tr>
         </thead>
         <tbody>
          
           <tr *ngFor="let absence of absences">
-            <td>--</td>
+            <td>{{ferie.date|date : 'dd/MM/yyyy'}}</td>
             <td>--</td>
             <td>--</td>
             <td>--</td>
