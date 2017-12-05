@@ -30,17 +30,18 @@ export class FeriesCreationComponent implements OnInit {
     else if (pDateDay.value == "JF") {
       this.alertShow(alert,"Le commentaire est obligatoire pour les jours feriés")
     }
-    /* TODO : il est interdit de saisir un jour férié à la même date qu'un autre jour férié
-    il est interdit de saisir une RTT employeur un samedi ou un dimanche
-    Si une RTT employeur est créée alors le système créé une demande d'abence au statut INITIALE. Cette demande sera traitée lors du passage du batch de nuit.
-    */
     else {
       var matricule = localStorage.getItem('matricule');
       matricule = "MAT01"
       this.ferieService.listerFeries().subscribe()
       
       this.closeModal.emit('bye')
-  }
+  }   
+  /* TODO : il est interdit de saisir un jour férié à la même date qu'un autre jour férié
+  il est interdit de saisir une RTT employeur un samedi ou un dimanche
+  Si une RTT employeur est créée alors le système créé une demande d'abence au statut INITIALE. Cette demande sera traitée lors du passage du batch de nuit.
+  */
+
 }
 
   private alertShow(alert,msg){
