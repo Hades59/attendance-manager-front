@@ -5,14 +5,14 @@
   <div class="container">
     <div class="form-group">
       <label>Date :</label>
-      <input type="date" class="form-control"  #dateDay>
+      <input type="date" class="form-control" min="{{currentDay}}" #dateDay>
     </div>
   
     <div class="form-group">
       <label>Type de jour :</label>
   
       <select class="form-control" #typeDay>
-        <option value="JOUR_FERIE">Jour ferié</option>
+        <option value="JF">Jour ferié</option>
         <option value="RTT" >RTT</option>
       </select>
     </div>
@@ -23,7 +23,7 @@
   
     <input type="button" class="btn btn-danger" value="Annuler"  (click) ="cancel()" />
   
-    <input type="submit" class="btn btn-success" value="Valider" (click) ="validate()" />
+    <input type="submit" class="btn btn-success" value="Valider" (click) ="validate(dateDay)" />
   
     <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
   
