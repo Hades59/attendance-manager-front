@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons,NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { Ferie } from '../../shared/domain/feries';
@@ -13,6 +14,7 @@ registerLocaleData(localeFr);
   styleUrls: ['./feries-visualisation.component.css']
 })
 export class FeriesVisualisationComponent implements OnInit {
+
 
   protected currentModal:NgbModalRef
   feries: Ferie[] = []
