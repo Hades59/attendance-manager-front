@@ -1,0 +1,50 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">
+      <img src="/assets/images/icon1.png" width="50" height="50" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/accueil" routerLinkActive="active" class="nav-link">Accueil</a>
+        </li>
+        <ng-container *ngIf="auth.getRole() as ROLE_EMPLOYE">
+          <li class="nav-item">
+            <a routerLink="/gestionAbs" routerLinkActive="active" class="nav-link">Gestion des absences</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/planningAbs" routerLinkActive="active" class="nav-link">Planning des absences</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/joursFeries" routerLinkActive="active" class="nav-link">Jours fériés</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="auth.getRole() as ROLE_MANAGER">
+          <li class="nav-item">
+            <a routerLink="/gestionAbs" routerLinkActive="active" class="nav-link">Gestion des absences</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/planningAbs" routerLinkActive="active" class="nav-link">Planning des absences</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/validDmdes" routerLinkActive="active" class="nav-link">Validation demandes</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/vuesSynth" routerLinkActive="active" class="nav-link">Vues synthétiques</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/joursFeries" routerLinkActive="active" class="nav-link">Jours fériés</a>
+          </li>
+        </ng-container>
+        <li class="nav-item">
+          <a routerLink="/login" class="btn btn-primary nav-link" *ngIf="auth.isAuthenticated(); else connect">
+            Se connecter
+          </a>
+          <a routerLink="/login" class="btn btn-primary nav-link" #connect>Se déconnecter</a>
+        </li>
+      </ul>
+  </div>
+</nav>

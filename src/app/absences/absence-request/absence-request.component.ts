@@ -15,14 +15,12 @@ export class AbsenceRequestComponent implements OnInit {
   @Input() absence:Absence;
   @Output() closeModal:EventEmitter<string> = new EventEmitter()
   
-
   constructor(private absenceService:AbsenceService) { }
 
   ngOnInit() {
   }
 
   validate(startDate,endDate,typeConge,motif,alert) {
-    console.log("!"+startDate.value+"!");
     var mStartDate = moment(startDate.value).format("DD-MM-YYYY");
     var mEndDate =  moment(endDate.value).format("DD-MM-YYYY");
 
@@ -41,7 +39,7 @@ export class AbsenceRequestComponent implements OnInit {
       this.alertShow(alert,"Le motif est obligatoire")
     }
     else {
-      var absence = new Absence(startDate.value,endDate.value,typeConge.value,motif.value)
+      var absence = new Absence(startDate.value,endDate.value,motif.value, typeConge.value, "EN_ATTENTE_VALIDATION")
       var matricule = localStorage.getItem('matricule');
       matricule = "MAT01"
       this.absenceService.absenceAsk(matricule, absence)
@@ -49,9 +47,8 @@ export class AbsenceRequestComponent implements OnInit {
       this.closeModal.emit('bye')
     }
   }
- 
 
-  cancel($event){// TODO: Retour visualisation des demandes
+  cancel(){
     this.closeModal.emit('bye')    
  }
 

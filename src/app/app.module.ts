@@ -12,11 +12,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
-
 import { Absence } from './shared/domain/absence'
 import { AppComponent } from './app.component';
 import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.component';
-import { NavManagerComponent } from './nav-manager/nav-manager.component';
+import { NavManagerComponent } from './nav/nav-manager/nav-manager.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DatePipe } from './shared/pipes/date.pipe';
 import { RouterModule, Routes } from '@angular/router';
@@ -28,8 +27,12 @@ import { AbsenceDeleteComponent } from './absences/absence-delete/absence-delete
 import { AbsenceUpdateComponent } from './absences/absence-update/absence-update.component';
 import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-visualize.component';
 import { AbsenceService } from './shared/service/absence.service';
+import { FeriesService } from './shared/service/feries.service';
 import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { LoginComponent } from './login/login.component';
+import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
+import { FeriesCreationComponent } from './feries/feries-creation/feries-creation.component';
+import { NavComponent } from './nav/nav.component';
 
 
 const appRoutes: Routes = [
@@ -47,6 +50,7 @@ const appRoutes: Routes = [
   { path: 'request', component: AbsenceRequestComponent,
    canActivate: [AuthGuard], data: { expectedRole: ['ROLE_EMPLOYE'] }
   },
+  { path: 'joursFeries', component: FeriesVisualisationComponent},
   { path: '**', redirectTo: 'accueil'}
 ];
 
@@ -60,15 +64,16 @@ const appRoutes: Routes = [
     NavManagerComponent,
     ValidationDemandesComponent,
     AccueilComponent,
-    AbsenceRequestComponent,
     PlanningAbsComponent,
-    DatePipe,
     AbsenceDeleteComponent,
     AbsenceUpdateComponent,
     AbsenceVisualizeComponent,
     AbsenceRequestComponent,
     TypeCongePipe,
-    LoginComponent
+    LoginComponent,
+    FeriesVisualisationComponent,
+    FeriesCreationComponent,
+    NavComponent
   ],
 
   imports: [
@@ -78,7 +83,6 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     HttpClientModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes)
@@ -88,8 +92,9 @@ const appRoutes: Routes = [
     NgbActiveModal,
     AuthService,
     AuthGuard,
-    //{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    FeriesService
   ],
   bootstrap: [AppComponent],
   exports: [PlanningAbsComponent]
