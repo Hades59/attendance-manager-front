@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
+import { startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours } from 'date-fns';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-vue-histogramme',
@@ -8,15 +17,22 @@ import { Component, OnInit } from '@angular/core';
 export class VueHistogrammeComponent implements OnInit {
 
   anneeTab: number[] = []
+  moisTab: Date[] = []
+  viewDate: Date = new Date();
 
   constructor() { }
 
   ngOnInit() {
     let today: Date = new Date();
     let annee = today.getFullYear()
-    for (let i=0; i<5;i++){
+    for (let i=0; i<5; i++){
       this.anneeTab.push(annee);
       annee--;
+    }
+    let mois = today.getMonth()
+    for (let i=0; i<12; i++){
+      this.moisTab.push(new Date(annee, i));
+   
     }
   }
 
@@ -24,7 +40,7 @@ export class VueHistogrammeComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels:string[] = [];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
  
@@ -42,15 +58,4 @@ export class VueHistogrammeComponent implements OnInit {
     console.log(e);
   }
  
-  public randomize():void {
-    // Only Change 3 values
-    let data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-  }
 }
