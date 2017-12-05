@@ -22,6 +22,9 @@ import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-
 import { AbsenceService } from './shared/service/absence.service';
 import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
+import { VueHistogrammeComponent } from './vue-histogramme/vue-histogramme.component';
+import { TabsModule, CollapseModule } from 'ng2-bootstrap';
+import { ChartsModule } from 'ng2-charts';
 
 
 const appRoutes: Routes = [ 
@@ -30,7 +33,7 @@ const appRoutes: Routes = [
   { path: 'planningAbs', component: PlanningAbsComponent},
   { path: 'gestionAbs', component: AbsenceVisuComponent},
   { path: 'request', component: AbsenceRequestComponent},
-  { path: 'joursFeries', component: FeriesVisualisationComponent},
+  { path: 'vuesSynth', component: VueHistogrammeComponent},
   { path: '**', redirectTo: 'accueil'} // redirige vers la route page1 par défaut
 ];
 
@@ -52,7 +55,8 @@ const appRoutes: Routes = [
     AbsenceVisualizeComponent,
     AbsenceRequestComponent,
     TypeCongePipe,
-    FeriesVisualisationComponent
+    FeriesVisualisationComponent,
+    VueHistogrammeComponent
   ],
 
   imports: [
@@ -65,7 +69,10 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ChartsModule,
+    TabsModule.forRoot(),
+    CollapseModule.forRoot(),
   ],
   providers: [AbsenceService, NgbActiveModal],
   bootstrap: [AppComponent],
