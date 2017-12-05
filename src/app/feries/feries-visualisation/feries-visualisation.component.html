@@ -32,9 +32,8 @@
             <td> {{j.commentaire}}</td>
             <td>
               <div class="row">
-                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered"></i>
+                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContentDelete(jourFerieDelete,j)"></i>
                 <i id="update" class="fa fa-pencil col-3 btn bordered"></i>
-                <i id="visualize" class="fa fa-eye col-3 btn bordered"></i>
               </div>
             </td>
           </tr>
@@ -48,4 +47,9 @@
 <!-- MODAL Ajout jour férié -->
 <ng-template #jourFerieRequest>
     <app-feries-creation (closeModal)="closeModal()"></app-feries-creation>
+</ng-template>
+
+<!-- MODAL suppression jour férié -->
+<ng-template #jourFerieDelete>
+  <app-feries-delete (closeModal)="closeModal()" [ferie]="currentFerie" ></app-feries-delete>
 </ng-template>

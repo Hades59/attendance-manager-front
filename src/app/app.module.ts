@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { Absence } from './shared/domain/absence'
+import { Ferie } from './shared/domain/feries'
 import { AppComponent } from './app.component';
 import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.component';
 import { NavManagerComponent } from './nav-manager/nav-manager.component';
@@ -24,6 +25,7 @@ import { FeriesService } from './shared/service/feries.service';
 import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
 import { FeriesCreationComponent } from './feries/feries-creation/feries-creation.component';
+import { FeriesDeleteComponent } from './feries/feries-delete/feries-delete.component';
 
 
 const appRoutes: Routes = [ 
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     AbsenceVisualizeComponent,
     TypeCongePipe,
     FeriesVisualisationComponent,
-    FeriesCreationComponent
+    FeriesCreationComponent,
+    FeriesDeleteComponent
   ],
 
   imports: [

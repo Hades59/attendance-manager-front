@@ -18,6 +18,7 @@ export class FeriesVisualisationComponent implements OnInit {
 
   protected currentModal:NgbModalRef
   feries: Ferie[] = []
+  currentFerie : Ferie
   
   constructor(private modalService: NgbModal, private ferieService:FeriesService) { }
 
@@ -31,6 +32,12 @@ export class FeriesVisualisationComponent implements OnInit {
 
   openContent(content){
   this.currentModal = this.modalService.open(content);
+  }
+  openContentDelete(content,j){
+    console.log(j);
+    
+    this.currentFerie = j
+    this.openContent(content)
   }
 
 }
