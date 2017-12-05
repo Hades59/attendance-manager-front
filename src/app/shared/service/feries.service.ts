@@ -29,14 +29,24 @@ export class FeriesService {
   }
 
   ferieDelete( jf: Ferie): Observable<Ferie[]> {
-    console.log("avant : "+this.feries.length);
     
     this.http.delete<Ferie>(`${environment.apiUrl}/feries/${jf.id}`, httpOptions).subscribe()
     this.feries = this.feries.filter(fer => fer != jf);
     this.ferieSubject.next(this.feries)
-    console.log(" Après :"+this.feries.length);
     
     return this.ferieSubject
 
   }
-}
+
+  create(ferie : Ferie ):Observable<Ferie[]>{
+    return this.http.post<Ferie[]>(`${environment.apiUrl}/feries`, ferie, httpOptions)
+    
+  }
+
+  refreshList(){
+    this.http.get<Ferie[]>(`${environment.apiUrl}/feries`, httpOptions)
+    .subscribe(data => this.ferieSubject.next(data))
+  }
+    
+      
+  }

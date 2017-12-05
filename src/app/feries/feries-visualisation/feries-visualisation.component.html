@@ -27,8 +27,8 @@
          
           <tr *ngFor="let j of feries">
             <td> {{j.date|date : 'dd/MM/yyyy'}} </td>
-            <td>  {{j.type}} </td>
-            <td> {{j.date | date:'EEEE':'':'fr'}} </td>
+            <td>  {{j.type |minuscule}} </td>
+            <td> {{j.date | date:'EEEE':'':'fr'|minuscule }} </td>
             <td> {{j.commentaire}}</td>
             <td>
               <div class="row">

@@ -23,9 +23,7 @@ export class FeriesVisualisationComponent implements OnInit {
   constructor(private modalService: NgbModal, private ferieService:FeriesService) { }
 
   ngOnInit() {
-    this.ferieService.listerFeries().subscribe(lst => this.feries = lst)
-    console.log(this.feries);
-    
+    this.ferieService.listerFeries().subscribe(lst => this.feries = lst) 
   }
 
   closeModal(){

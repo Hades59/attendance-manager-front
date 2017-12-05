@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FeriesService} from '../../shared/service/feries.service';
 import * as moment from 'moment';
+import {Ferie} from '../../shared/domain/feries';
+
 
 @Component({
   selector: 'app-feries-creation',
@@ -11,6 +13,7 @@ export class FeriesCreationComponent implements OnInit {
 
   @Output() closeModal:EventEmitter<string> = new EventEmitter()
   currentDay : string
+
   constructor(private ferieService:FeriesService) { }
 
   ngOnInit() {
@@ -22,20 +25,27 @@ export class FeriesCreationComponent implements OnInit {
     this.closeModal.emit('bye')    
   }
 
-  validate(pDateDay){
+  validate(pDateDay,pType,pCommentaire, alert){
 
     if(pDateDay.value==""){ 
       this.alertShow(alert,"Veuillez fournir une date")
     }
-    else if (pDateDay.value == "JF") {
+    else if (pType.value == "FERIE" && pCommentaire == "") {
       this.alertShow(alert,"Le commentaire est obligatoire pour les jours feriés")
     }
     else {
-      var matricule = localStorage.getItem('matricule');
-      matricule = "MAT01"
-      this.ferieService.listerFeries().subscribe()
+      let jf = new Ferie(new Date(pDateDay.value),
+      pType.value,
+      pCommentaire.value);
+
       
-      this.closeModal.emit('bye')
+      this.ferieService.create(jf).subscribe(data => {
+        this.ferieService.refreshList();        
+        this.closeModal.emit('bye')
+        
+      }, error => {
+        this.alertShow(alert, "Existe déjà dans la base") 
+      })
   }   
   /* TODO : il est interdit de saisir un jour férié à la même date qu'un autre jour férié
   il est interdit de saisir une RTT employeur un samedi ou un dimanche
