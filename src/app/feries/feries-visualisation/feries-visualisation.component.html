@@ -26,9 +26,10 @@
         <tbody>
          
           <tr *ngFor="let j of feries">
-            <td{{j.date|date : 'DD-MM-YYYY'}}td>
-            <td>{{j.type}}</td>
-            <td{{today | date:'EEEE':'':'fr'}}td>
+            <td> {{j.date|date : 'dd/MM/yyyy'}} </td>
+            <td>  {{j.type}} </td>
+            <td> {{j.date | date:'EEEE':'':'fr'}} </td>
+            <td> {{j.commentaire}}</td>
             <td>
               <div class="row">
                 <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered"></i>
