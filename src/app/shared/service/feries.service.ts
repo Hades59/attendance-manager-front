@@ -31,7 +31,7 @@ export class FeriesService {
   ferieDelete( jf: Ferie): Observable<Ferie[]> {
     console.log("avant : "+this.feries.length);
     
-    this.http.delete<Ferie>(`${environment.apiUrl}/ferie/${jf.id}`, httpOptions).subscribe()
+    this.http.delete<Ferie>(`${environment.apiUrl}/feries/${jf.id}`, httpOptions).subscribe()
     this.feries = this.feries.filter(fer => fer != jf);
     this.ferieSubject.next(this.feries)
     console.log(" Après :"+this.feries.length);
