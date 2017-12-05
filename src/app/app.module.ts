@@ -20,6 +20,7 @@ import { AbsenceDeleteComponent } from './absences/absence-delete/absence-delete
 import { AbsenceUpdateComponent } from './absences/absence-update/absence-update.component';
 import { AbsenceVisualizeComponent } from './absences/absence-visualize/absence-visualize.component';
 import { AbsenceService } from './shared/service/absence.service';
+import { FeriesService } from './shared/service/feries.service';
 import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
 import { FeriesCreationComponent } from './feries/feries-creation/feries-creation.component';
@@ -66,7 +67,7 @@ const appRoutes: Routes = [
     CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AbsenceService, NgbActiveModal],
+  providers: [AbsenceService, NgbActiveModal,FeriesService],
   bootstrap: [AppComponent],
   exports: [PlanningAbsComponent]
 })
