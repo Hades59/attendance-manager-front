@@ -24,4 +24,16 @@ export class FeriesService {
 
     return this.ferieSubject;
   }
-}
+
+  create(ferie : Ferie ):Observable<Ferie[]>{
+    return this.http.post<Ferie[]>(`${environment.apiUrl}/feries`, ferie, httpOptions)
+    
+  }
+
+  refreshList(){
+    this.http.get<Ferie[]>(`${environment.apiUrl}/feries`, httpOptions)
+    .subscribe(data => this.ferieSubject.next(data))
+  }
+    
+      
+  }
