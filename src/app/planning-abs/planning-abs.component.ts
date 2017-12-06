@@ -55,6 +55,7 @@ export class PlanningAbsComponent {
     action: string;
     event: CalendarEvent;
   };
+      
 /*
   actions: CalendarEventAction[] = [
     {
@@ -77,7 +78,7 @@ export class PlanningAbsComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, public absenceService: AbsenceService) { 
+  constructor(public absenceService: AbsenceService) { 
     this.events = this.refresh.asObservable()
     this.absenceService.listerAbsenceParStatus("VALIDEE")
                        .subscribe(absences => absences.forEach(abs => {
@@ -92,11 +93,19 @@ export class PlanningAbsComponent {
       if (abs.type=='CONGE_SANS_SOLDE'){
         color=colors.red;
       }                   
-                        
+                
+      let type = abs.type
+
+      if(type != 'RTT'){
+        type = type.replace(/_/g, ' ').toLowerCase()
+        
+        type = type.replace(type.charAt(0), type.charAt(0).toUpperCase())
+      }
+      
       let event : CalendarEvent = {
         "start": new Date(abs.beginDate),
         "end": new Date(abs.endDate),
-        "title": abs.type+": "+abs.id,  //absence.nom + absence.type
+        "title": type+": "+abs.id,  //absence.nom + absence.type
         "color": color
       }
       
