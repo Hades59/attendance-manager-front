@@ -1,0 +1,32 @@
+<div class="jumbotron text-center">
+  <h1>Modifier un jour férié / RTT employeur</h1>
+</div>
+<div class="container">
+  <div class="form-group">
+      <label>Date :</label>
+      
+      <input type="date" class="form-control" min="{{currentDay}}" value="{{ferie.date| date: 'yyyy-MM-dd'}}" #dateDay>
+    </div>
+
+  <div class="form-group">
+      <label>Type de jour:</label>
+  
+      <select class="form-control" #typeDay>
+        <option value="FERIE" [selected]="ferie.type== 'FERIE'">Jour férié</option>
+        <option value="RTT" [selected]="ferie.type== 'RTT_EMPLOYEUR'" >RTT</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="email">Commentaire :</label>
+      <textarea type="date" class="form-control" value="{{ferie.commentaire}}" #commentaire></textarea>
+    </div>
+  
+    <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
+
+  <input type="button" class="btn btn-danger" value="Annuler" (click) ="cancel()" />
+
+  <input type="submit" class="btn btn-success" value="Valider" (click) ="validate(dateDay,typeDay,commentaire,alert)" />
+
+  <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
+
+</div>

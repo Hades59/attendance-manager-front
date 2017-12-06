@@ -111,4 +111,5 @@ export class AbsenceService {
     return this.absenceSubject.asObservable()
   }
 
+  
 }

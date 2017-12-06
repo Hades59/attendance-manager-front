@@ -12,8 +12,8 @@
       <label>Type de jour :</label>
   
       <select class="form-control" #typeDay>
-        <option value="JF">Jour ferié</option>
-        <option value="RTT" >RTT</option>
+        <option value="FERIE">Jour ferié</option>
+        <option value="RTT_EMPLOYEUR" >RTT</option>
       </select>
     </div>
     <div class="form-group">
@@ -21,10 +21,11 @@
       <input type="text" class="form-control" #commentaire>
     </div>
   
+    
     <input type="button" class="btn btn-danger" value="Annuler"  (click) ="cancel()" />
   
-    <input type="submit" class="btn btn-success" value="Valider" (click) ="validate(dateDay)" />
-  
+    <input type="submit" class="btn btn-success" value="Valider" (click) ="validate(dateDay,typeDay,commentaire,alert)" />
     <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
+    
   
   </div>

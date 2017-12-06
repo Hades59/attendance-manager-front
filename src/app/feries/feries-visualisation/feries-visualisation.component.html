@@ -2,16 +2,18 @@
   <h2>Jours fériés et RTT employeurs</h2>
 </div>
 
-<div class="row">
-    <div class="col">
-      <h3 class="text-right">Ajouter un jour férié ou une RTT employeur</h3>
-    </div>
-    <div class="btn btn-primary" (click)="openContent(jourFerieRequest)">+</div>
-  </div>
-
-
 <div class="container-fluid">
-  <div class="row">
+<div class="row" id="tableau">
+    <div class="col-11">
+      <h4 class="text-right">Ajouter un jour férié ou une RTT employeur</h4>
+    </div>
+    <div class="col-1">
+      <div class="btn btn-primary float-right" (click)="openContent(jourFerieRequest)">+</div>
+    </div>
+  </div>
+ 
+
+  <div class="row" >
     <div class="col">
       <table class="table table-striped table-bordered">
         <thead>
@@ -27,14 +29,13 @@
          
           <tr *ngFor="let j of feries">
             <td> {{j.date|date : 'dd/MM/yyyy'}} </td>
-            <td>  {{j.type}} </td>
-            <td> {{j.date | date:'EEEE':'':'fr'}} </td>
-            <td> {{j.commentaire}}</td>
+            <td>  {{j.type |minuscule}} </td>
+            <td> {{j.date | date:'EEEE':'':'fr'|minuscule }} </td>
+            <td> {{j.commentaire}} </td>
             <td>
               <div class="row">
-                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered"></i>
-                <i id="update" class="fa fa-pencil col-3 btn bordered"></i>
-                <i id="visualize" class="fa fa-eye col-3 btn bordered"></i>
+                <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContentDelete(jourFerieDelete,j)"></i>
+                <i id="update" class="fa fa-pencil col-3 btn bordered" (click)="openContentDelete(jourFerieUpdate,j)"></i>
               </div>
             </td>
           </tr>
@@ -48,4 +49,14 @@
 <!-- MODAL Ajout jour férié -->
 <ng-template #jourFerieRequest>
     <app-feries-creation (closeModal)="closeModal()"></app-feries-creation>
+</ng-template>
+
+<!-- MODAL suppression jour férié -->
+<ng-template #jourFerieDelete>
+  <app-feries-delete (closeModal)="closeModal()" [ferie]="currentFerie" ></app-feries-delete>
+</ng-template>
+
+<ng-template #jourFerieUpdate>
+  
+<app-feries-update (closeModal)="closeModal()" [ferie]="currentFerie" ></app-feries-update>
 </ng-template>
