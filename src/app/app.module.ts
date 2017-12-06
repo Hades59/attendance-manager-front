@@ -31,6 +31,9 @@ import { FeriesService } from './shared/service/feries.service';
 import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { LoginComponent } from './login/login.component';
 import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
+import { VueHistogrammeComponent } from './vue-histogramme/vue-histogramme.component';
+import { TabsModule, CollapseModule } from 'ng2-bootstrap';
+import { ChartsModule } from 'ng2-charts';
 import { FeriesCreationComponent } from './feries/feries-creation/feries-creation.component';
 import { NavComponent } from './nav/nav.component';
 import { FeriesDeleteComponent } from './feries/feries-delete/feries-delete.component';
@@ -39,6 +42,11 @@ import { FeriesUpdateComponent } from './feries/feries-update/feries-update.comp
 
 const appRoutes: Routes = [
   { path: 'accueil', component: AccueilComponent },
+  { path: 'planningAbs', component: PlanningAbsComponent},
+  { path: 'gestionAbs', component: AbsenceVisuComponent},
+  { path: 'request', component: AbsenceRequestComponent},
+  { path: 'vuesSynth', component: VueHistogrammeComponent},
+  { path: '**', redirectTo: 'accueil'} // redirige vers la route page1 par défaut
   { path: 'login', component: LoginComponent },
   { path: 'validDmdes', component: ValidationDemandesComponent,
     canActivate: [AuthGuard], data: { expectedRole: ['ROLE_MANAGER'] }
@@ -72,6 +80,8 @@ const appRoutes: Routes = [
     AbsenceVisualizeComponent,
     AbsenceRequestComponent,
     TypeCongePipe,
+    FeriesVisualisationComponent,
+    VueHistogrammeComponent,
     LoginComponent,
     FeriesVisualisationComponent,
     FeriesCreationComponent,
@@ -89,7 +99,10 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ChartsModule,
+    TabsModule.forRoot(),
+    CollapseModule.forRoot(),
   ],
   providers: [
     AbsenceService,
