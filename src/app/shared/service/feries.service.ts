@@ -21,7 +21,11 @@ export class FeriesService {
   listerFeries():Observable<Ferie[]>{
     this.http.get<Ferie[]>(`${environment.apiUrl}/feries`, httpOptions)
     .subscribe(data => {
-      this.feries = data
+      this.feries = data.map(uneData => {
+        const f = new Ferie(uneData.date, uneData.type, uneData.commentaire)
+        f.id = uneData.id
+      return f
+      })
       this.ferieSubject.next(this.feries)
     } )
 
@@ -40,6 +44,12 @@ export class FeriesService {
 
   create(ferie : Ferie ):Observable<Ferie[]>{
     return this.http.post<Ferie[]>(`${environment.apiUrl}/feries`, ferie, httpOptions)
+    
+  }
+
+  update(ferie : Ferie ):Observable<Ferie[]>{
+    
+    return this.http.post<Ferie[]>(`${environment.apiUrl}/feries/${ferie.id}`, ferie, httpOptions)
     
   }
 

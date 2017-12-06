@@ -5,27 +5,27 @@
   <div class="form-group">
       <label>Date :</label>
       
-      <input type="date" class="form-control" id="startDate" name="startDate" value="{{absence.beginDate| date: 'yyyy-MM-dd'}}" #startDate>
+      <input type="date" class="form-control" min="{{currentDay}}" value="{{ferie.date| date: 'yyyy-MM-dd'}}" #dateDay>
     </div>
 
   <div class="form-group">
       <label>Type de jour:</label>
   
-      <select class="form-control" #typeConge>
-        <option value="FERIE" [selected]="j.type== 'FERIE'">Congé sans solde</option>
-        <option value="RTT" [selected]="j.type== 'RTT_EMPLOYEUR'" >RTT</option>
+      <select class="form-control" #typeDay>
+        <option value="FERIE" [selected]="ferie.type== 'FERIE'">Jour férié</option>
+        <option value="RTT" [selected]="ferie.type== 'RTT_EMPLOYEUR'" >RTT</option>
       </select>
     </div>
     <div class="form-group">
       <label for="email">Commentaire :</label>
-      <textarea type="date" class="form-control" value="{{j.commentaire}}" #motif></textarea>
+      <textarea type="date" class="form-control" value="{{ferie.commentaire}}" #commentaire></textarea>
     </div>
   
     <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
 
   <input type="button" class="btn btn-danger" value="Annuler" (click) ="cancel()" />
 
-  <input type="submit" class="btn btn-success" value="Valider" (click) ="validate(date, commentaire,alert)" />
+  <input type="submit" class="btn btn-success" value="Valider" (click) ="validate(dateDay,typeDay,commentaire,alert)" />
 
   <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
 

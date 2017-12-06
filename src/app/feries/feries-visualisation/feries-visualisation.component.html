@@ -35,7 +35,7 @@
             <td>
               <div class="row">
                 <i id="delete" class="fa fa-trash col-3 offset-2 btn bordered" (click)="openContentDelete(jourFerieDelete,j)"></i>
-                <i id="update" class="fa fa-pencil col-3 btn bordered"></i>
+                <i id="update" class="fa fa-pencil col-3 btn bordered" (click)="openContentDelete(jourFerieUpdate,j)"></i>
               </div>
             </td>
           </tr>
@@ -54,4 +54,9 @@
 <!-- MODAL suppression jour férié -->
 <ng-template #jourFerieDelete>
   <app-feries-delete (closeModal)="closeModal()" [ferie]="currentFerie" ></app-feries-delete>
+</ng-template>
+
+<ng-template #jourFerieUpdate>
+  
+<app-feries-update (closeModal)="closeModal()" [ferie]="currentFerie" ></app-feries-update>
 </ng-template>

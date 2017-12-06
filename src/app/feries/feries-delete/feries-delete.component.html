@@ -2,7 +2,9 @@
   <div class="form-group">
       <div class="jumbotron text-center">
      
-    <h1>Confirmez-vous la suppression de la RTT employeur suivante ?</h1>
+    <h1 *ngIf="ferie.type == 'RTT_EMPLOYEUR'">Confirmez-vous la suppression de la RTT employeur suivante ?</h1>
+    <h1 *ngIf="ferie.type == 'FERIE'">Confirmez-vous la suppression du jour férié suivant ?</h1>
+    
   </div>
     <ul>
       <li>
