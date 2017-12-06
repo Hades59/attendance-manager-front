@@ -17,7 +17,6 @@ export class AbsenceService {
   // données en mémoire
   absenceSubject: BehaviorSubject<Absence[]> = new BehaviorSubject([])
 
-
   absences: Absence[] = []
 
   constructor(private http: HttpClient) {
