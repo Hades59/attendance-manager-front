@@ -12,21 +12,20 @@
       <label>Type de jour:</label>
   
       <select class="form-control" #typeConge>
-        <option value="CONGE_SANS_SOLDE" [selected]="absence.type== 'CONGE_SANS_SOLDE'">Congé sans solde</option>
-        <option value="CONGE_PAYE" [selected]="absence.type=='CONGE_PAYE'">congé payé</option>
-        <option value="RTT" [selected]="absence.type== 'RTT'" >RTT</option>
+        <option value="FERIE" [selected]="j.type== 'FERIE'">Congé sans solde</option>
+        <option value="RTT" [selected]="j.type== 'RTT_EMPLOYEUR'" >RTT</option>
       </select>
     </div>
     <div class="form-group">
       <label for="email">Commentaire :</label>
-      <textarea type="date" class="form-control" value="{{absence.motif}}" #motif></textarea>
+      <textarea type="date" class="form-control" value="{{j.commentaire}}" #motif></textarea>
     </div>
   
     <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
 
   <input type="button" class="btn btn-danger" value="Annuler" (click) ="cancel()" />
 
-  <input type="submit" class="btn btn-success" value="Valider" (click) ="validate(startDate,endDate,typeConge,motif,alert)" />
+  <input type="submit" class="btn btn-success" value="Valider" (click) ="validate(date, commentaire,alert)" />
 
   <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
 
