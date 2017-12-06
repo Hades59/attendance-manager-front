@@ -43,7 +43,8 @@ export class AuthService {
   }
 
   getRole(): string {
-    return jwt_decode(this.getToken()).role
+    console.log(this.getToken() ? jwt_decode(this.getToken()).role : 'NONE')
+    return this.getToken() ? jwt_decode(this.getToken()).role : 'NONE'
   }
 
   login(user): Observable<any> {

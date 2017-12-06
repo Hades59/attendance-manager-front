@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  authenticate(matricule, password) {
+  authenticate(matricule, password, alert) {
     let userLogin:User = new User()
     userLogin.matricule = matricule.value
     userLogin.password = password.value
@@ -26,8 +26,14 @@ export class LoginComponent implements OnInit {
       resp => {
         this.authService.setToken(resp.headers.get('Authorization').replace("Bearer ", ""))
         this.router.navigateByUrl(this.returnUrl)
-      }, err => console.log(err)
+      }, err => this.alertShow(alert, 'Matricule/mot de passe incorrect')
     )
+  }
+
+  private alertShow(alert,msg){
+    alert.style.visibility = 'visible'
+    alert.innerHTML = msg
+    setTimeout(() => {alert.style.visibility = 'hidden'},8000);
   }
 
 }

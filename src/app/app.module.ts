@@ -15,7 +15,6 @@ import { CalendarModule } from 'angular-calendar';
 import { Absence } from './shared/domain/absence'
 import { AppComponent } from './app.component';
 import { AbsenceVisuComponent } from './absences/absence-visu/absence-visu.component';
-import { NavManagerComponent } from './nav/nav-manager/nav-manager.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DatePipe } from './shared/pipes/date.pipe';
 import { RouterModule, Routes } from '@angular/router';
@@ -42,15 +41,17 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard], data: { expectedRole: ['ROLE_MANAGER'] }
   },
   { path: 'planningAbs', component: PlanningAbsComponent,
-   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_EMPLOYE'] }
+   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_MANAGER', 'ROLE_EMPLOYE'] }
   },
   { path: 'gestionAbs', component: AbsenceVisuComponent,
-   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_EMPLOYE'] }
+   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_MANAGER', 'ROLE_EMPLOYE'] }
   },
   { path: 'request', component: AbsenceRequestComponent,
-   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_EMPLOYE'] }
+   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_MANAGER'] }
   },
-  { path: 'joursFeries', component: FeriesVisualisationComponent},
+  { path: 'joursFeries', component: FeriesVisualisationComponent,
+   canActivate: [AuthGuard], data: { expectedRole: ['ROLE_MANAGER', 'ROLE_EMPLOYE'] }
+  },
   { path: '**', redirectTo: 'accueil'}
 ];
 
@@ -58,10 +59,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AbsenceVisuComponent,
-    NavManagerComponent,
     DatePipe,
     AbsenceRequestComponent,
-    NavManagerComponent,
     ValidationDemandesComponent,
     AccueilComponent,
     PlanningAbsComponent,

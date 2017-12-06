@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../security/auth.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-nav',
@@ -9,11 +10,16 @@ import { AuthService } from '../security/auth.service'
 export class NavComponent implements OnInit {
   isCollapsed: boolean;
 
-  constructor(public auth:AuthService) {
+  constructor(public auth:AuthService, private router:Router) {
     this.isCollapsed = true
   }
 
   ngOnInit() {
+  }
+
+  disconnect():void {
+    localStorage.removeItem('jwt_token')
+    this.router.navigate(['accueil'])
   }
 
 }
