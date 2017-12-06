@@ -1,0 +1,26 @@
+.jumbotron {
+  padding: 1rem;
+  margin-top:1%;
+}
+
+.bordered{
+  border: 1px solid #ccc;
+}
+
+#delete:hover{
+  background-color: red;
+}
+
+#update:hover{
+  background-color: #6495ED;
+}
+
+#visualize:hover{
+  background-color: green;
+}
+
+
+#tableau {
+  margin: 1rem;
+}
+

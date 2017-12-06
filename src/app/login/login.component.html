@@ -1,0 +1,18 @@
+
+<div class="jumbotron text-center">
+  <h1>Connexion</h1>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="inputMatricule">Matricule</label>
+    <input type="text" class="form-control" id="inputMatricule" aria-describedby="matriculeHelp" #matricule>
+    <small id="matriculeHelp" class="form-text text-muted">Mettez ici votre matricule d'utilisateur</small>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Mot de passe</label>
+    <input type="password" class="form-control" id="inputPassword" placeholder="Password" #password>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="authenticate(matricule, password, alert)">Se connecter</button>
+  <div class="alert alert-danger" role="alert" style="visibility:hidden" #alert></div>
+</form>

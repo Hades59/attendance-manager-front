@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavManagerComponent } from './nav-manager.component';
+import { FeriesDeleteComponent } from './feries-delete.component';
 
-describe('NavManagerComponent', () => {
-  let component: NavManagerComponent;
-  let fixture: ComponentFixture<NavManagerComponent>;
+describe('FeriesDeleteComponent', () => {
+  let component: FeriesDeleteComponent;
+  let fixture: ComponentFixture<FeriesDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavManagerComponent ]
+      declarations: [ FeriesDeleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavManagerComponent);
+    fixture = TestBed.createComponent(FeriesDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
