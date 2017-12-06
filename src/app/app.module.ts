@@ -26,6 +26,7 @@ import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
 import { FeriesCreationComponent } from './feries/feries-creation/feries-creation.component';
 import { FeriesDeleteComponent } from './feries/feries-delete/feries-delete.component';
+import { FeriesUpdateComponent } from './feries/feries-update/feries-update.component';
 
 
 const appRoutes: Routes = [ 
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     TypeCongePipe,
     FeriesVisualisationComponent,
     FeriesCreationComponent,
-    FeriesDeleteComponent
+    FeriesDeleteComponent,
+    FeriesUpdateComponent
   ],
 
   imports: [
