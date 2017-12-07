@@ -5,10 +5,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --bh /attendance-manager-ghpages  --deploy-url /attendance-manager-ghpages",
     "test": "ng test",
     "lint": "ng lint",
+    "deploy":"gh-pages-deploy",
     "e2e": "ng e2e"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "dist",
+    "prep": [
+      "build"
+    ],
+    "noprompt": false
   },
   "private": true,
   "dependencies": {
@@ -46,6 +54,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.2.0",
+    "gh-pages-deploy": "^0.4.2",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
