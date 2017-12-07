@@ -32,7 +32,7 @@ import { TypeCongePipe } from './shared/pipes/type-conge.pipe';
 import { LoginComponent } from './login/login.component';
 import { FeriesVisualisationComponent } from './feries/feries-visualisation/feries-visualisation.component';
 import { VueHistogrammeComponent } from './vue-histogramme/vue-histogramme.component';
-import { TabsModule, CollapseModule } from 'ng2-bootstrap';
+import { TabsModule, CollapseModule } from 'ngx-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import { FeriesCreationComponent } from './feries/feries-creation/feries-creation.component';
 import { NavComponent } from './nav/nav.component';
@@ -46,7 +46,6 @@ const appRoutes: Routes = [
   { path: 'gestionAbs', component: AbsenceVisuComponent},
   { path: 'request', component: AbsenceRequestComponent},
   { path: 'vuesSynth', component: VueHistogrammeComponent},
-  { path: '**', redirectTo: 'accueil'} // redirige vers la route page1 par défaut
   { path: 'login', component: LoginComponent },
   { path: 'validDmdes', component: ValidationDemandesComponent,
     canActivate: [AuthGuard], data: { expectedRole: ['ROLE_MANAGER'] }

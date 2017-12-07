@@ -5,10 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --bh /attendance-manager-ghpages  --deploy-url /attendance-manager-ghpages",
+    "build": "ng build --prod --bh /attendance-manager-front --deploy-url /attendance-manager-front",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy":"gh-pages-deploy",
+    "deploy": "gh-pages-deploy",
     "e2e": "ng e2e"
   },
   "gh-pages-deploy": {
